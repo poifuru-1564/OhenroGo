@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::create('temples', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('name');
+            
         });
     }
 

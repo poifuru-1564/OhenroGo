@@ -13,7 +13,17 @@ return new class extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->foreignId('user_id')->constrained();
+            $table->string('title');
+            $table->text('body');
+            $table->text('photo_path')->nullable();
+            $table->timestamps('created_at');
+            $table->timestamps('updated_at')->nullable();
+            $table->timestamps('deleted_at')->nullable();
+            $table->foreignId('prefecture_id')->constrained();
+            $table->foreignId('temple_id')->constrained();
+            $table->foreignId('topid_id')->constrained();
+            $table->foreignId('status_id')->constrained();
         });
     }
 
