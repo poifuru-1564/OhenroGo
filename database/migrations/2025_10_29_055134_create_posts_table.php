@@ -16,10 +16,10 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->string('title');
             $table->text('body');
-            $table->text('photo_path')->nullable();
+            $table->text('photo_path');
             $table->timestamps('created_at');
-            $table->timestamps('updated_at')->nullable();
-            $table->timestamps('deleted_at')->nullable();
+            $table->timestamps('updated_at');
+            $table->timestamps('deleted_at');
             $table->foreignId('prefecture_id')->constrained();
             $table->foreignId('temple_id')->constrained();
             $table->foreignId('topid_id')->constrained();

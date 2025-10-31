@@ -12,6 +12,8 @@ class UsersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        <param name="" value="">
+        DB::table('users')->
+        
     }
 }
