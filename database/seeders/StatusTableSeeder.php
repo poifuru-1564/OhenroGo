@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class StatusTableSeeder extends Seeder
 {
@@ -12,6 +13,10 @@ class StatusTableSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        DB::table('status')->insert([
+            ['name' => 'During Ohenro'],
+            ['name' => 'Before Ohenro'],
+            ['name' => 'After Ohenro']
+        ]);
     }
 }

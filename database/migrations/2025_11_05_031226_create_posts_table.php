@@ -16,14 +16,14 @@ return new class extends Migration
             $table->foreignId('user_id')->constrained();
             $table->string('title');
             $table->text('body');
-            $table->text('photo_path');
-            $table->timestamps('created_at');
-            $table->timestamps('updated_at');
-            $table->timestamps('deleted_at');
+            $table->text('photo_path')->nullable();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('deleted_at')->nullable();
             $table->foreignId('prefecture_id')->constrained();
             $table->foreignId('temple_id')->constrained();
-            $table->foreignId('topid_id')->constrained();
-            $table->foreignId('status_id')->constrained();
+            $table->foreignId('topic_id')->constrained();
+            $table->foreignId('status_id')->constrained('status');
         });
     }
 

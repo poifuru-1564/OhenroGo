@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('temples', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->foreignId('prefecture_id')->constrained();
             
         });
     }

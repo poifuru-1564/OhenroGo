@@ -12,7 +12,6 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->timestamp('created_at');
             $table->timestamp('deleted_at')->nullable();
             $table->foreignId('role_id')->constrained();
         });
@@ -28,3 +27,4 @@ return new class extends Migration
         });
     }
 };
+
