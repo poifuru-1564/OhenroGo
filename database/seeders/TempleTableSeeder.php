@@ -110,10 +110,10 @@ class TempleTableSeeder extends Seeder
         DB::table('temples')->insert(
             collect($data)->map(function ($data, $index){
 
-                $tokushima = DB::table('prefecture')->where('name', 'Tokushima')->value('id');
-                $kochi = DB::table('prefecture')->where('name', 'Kochi')->value('id');
-                $ehime = DB::table('prefecture')->where('name', 'Ehime')->value('id');
-                $kagawa = DB::table('prefecture')->where('name', 'Kagawa')->value('id');
+                $tokushima = DB::table('prefectures')->where('name', 'Tokushima')->value('id');
+                $kochi = DB::table('prefectures')->where('name', 'Kochi')->value('id');
+                $ehime = DB::table('prefectures')->where('name', 'Ehime')->value('id');
+                $kagawa = DB::table('prefectures')->where('name', 'Kagawa')->value('id');
 
                 if($index >= 1 && $index < 24)
                 {
