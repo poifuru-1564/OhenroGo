@@ -7,12 +7,6 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-# Ohenro GO!
-
-## Group members:
-
-Mashiro, Ayaka, Mei, Sumire
-
 ## ER diagram(draw.io)
 
 https://drive.google.com/file/d/1Ii0g0MHEgcG1RKQVOaHIhHK3JjyYO3Uw/view?usp=sharing
