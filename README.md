@@ -7,6 +7,12 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
+# Ohenro GO!
+
+## Group members:
+
+Mashiro, Ayaka, Mei, Sumire
+
 ## ER diagram(draw.io)
 
 https://drive.google.com/file/d/1Ii0g0MHEgcG1RKQVOaHIhHK3JjyYO3Uw/view?usp=sharing
@@ -14,6 +20,13 @@ https://drive.google.com/file/d/1Ii0g0MHEgcG1RKQVOaHIhHK3JjyYO3Uw/view?usp=shari
 ## wireframe(Figma)
 
 https://www.figma.com/design/YPTE7VIw6KqzvjQmYUsQyL/Ohenro-GO-?node-id=131-1689&t=pMLZ63SqllwnajAl-1
+
+## resources
+
+Laravel framework
+my sql
+
+## instruction
 
 ## About Laravel
 
