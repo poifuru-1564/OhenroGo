@@ -1,3 +1,4 @@
+@charset "UTF-8";
 .body {
     display: flex;
     align-items: center;
@@ -5,28 +6,42 @@
 }
 .categories {
     display: flex;
-    position: sticky;
+    position: fixed;
     justify-content: center;
     align-items: center;
-    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 7vh;
     background-color: #ffffff;
     z-index: 1000;
+    padding: 0.5em 0;
 }
 .category-toggle-button {
     display: flex;
+    position: relative;
+    justify-content: center;
     align-items: center;
     background-color: #75ad6f;
     border: none;
     color: white;
     padding: 1em 2em;
+    padding-right: 3em;
     cursor: pointer;
-    margin: 1vh;
-    text-size-adjust: auto;
+    margin: 0.5vh;
+    width: 20vw;
     font-size: 1em;
+    flex: 1 1 0;
+    min-width: 5vw;
+    max-width: 20vw;
+    font-size: clamp(0.6rem, 1.5vw, 1rem);
+}
+.category-toggle-button::after {
+    content: "▼";
+    position: absolute;
+    right: 1em;
+    font-size: 0.8em;
+    opacity: 0.7;
 }
 
 .post-category {
@@ -72,14 +87,7 @@
     align-items: center;
     margin-bottom: 2vh;
 }
-.side-buttons {
-    position: fixed;
-    top: 80%;
-    right: 3vw;
-    display: flex;
-    flex-direction: column;
-    gap: 2vh;
-}
+
 .blog-body {
     padding: 1.5em;
     font-size: 1.2em;
@@ -88,31 +96,76 @@
     width: 60vw;
     height: auto;
 }
+.post-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    margin-bottom: 1em;
+}
+.side-buttons {
+    position: fixed;
+    top: 80%;
+    right: 3vw;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
 
 .side-button {
     background-color: #ff7e1c;
-    width: 7vw;
-    height: 7vh;
+    width: 12vh;
+    aspect-ratio: 1 / 0.7;
+
     border: none;
     color: white;
     padding: 1em 1em;
     cursor: pointer;
+    font-size: 1em;
+    white-space: normal;
+    word-wrap: break-word;
 }
+
+.side-button.active {
+    background-color: #64391a;
+    color: white;
+    border: none;
+}
+
+@media (max-width: 600px) {
+    .side-button {
+        width: 100px;
+        height: 8vh;
+        aspect-ratio: auto;
+        font-size: 0.7em;
+    }
+}
+
 .blog-card-header {
     display: flex;
     justify-content: space-between;
     width: 60vw;
     align-items: center;
     padding: 1em;
-    font-size: 1.5em;
+    font-size: 1.2em;
     color: black;
 }
 .likes {
     display: flex;
     justify-content: flex-start;
     padding: 1.5em;
-    font-size: 1.5em;
+    font-size: 1.2em;
     color: black;
     margin: 0;
     width: 85%;
+}
+.category-menu {
+    display: none;
+    background: #eee;
+    padding: 1em;
+    border-radius: 6px;
+    margin-top: 0.5em;
+}
+
+.category-menu.open {
+    display: block;
 }
