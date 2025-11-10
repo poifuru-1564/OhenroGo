@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>BlogEditor !!!</title>
+    <title>BlogEditor</title>
     <link href="{{asset('css/blogListing.css')}}" rel="stylesheet" />
     <link href="{{asset('css/blogEditor.css')}}" rel="stylesheet" />
 </head>
@@ -17,7 +17,7 @@
             
         </div>
             
-        </div>
+        
         <div class="blog-body">
             <div class="editor-categories">
                 <button class="category-toggle-button" type="button" >Prefectures</button>
@@ -51,11 +51,12 @@
         <button class="add-image-button" type="submit">Click here to add Image</button>
     </form>
 </div>
-    <div class="likes">Liked by
+</div>
+    <div class="likes">
     <form action="/submit-blog" method="POST">
         @csrf
-        <button type="discard">Discard</button>
-        <button type="post">Post</button>
+        <button class="discard-button" type="discard">Discard</button>
+        <button class="post-button" type="post">Post</button>
     </form>
     </div>
 
