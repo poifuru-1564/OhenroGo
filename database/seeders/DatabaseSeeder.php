@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
             StatusTableSeeder::class,
             TopicTableSeeder::class,
             UsersTableSeeder::class,
-            // PostsTableSeeder::class
+            PostsTableSeeder::class
         ]);
     }
 }

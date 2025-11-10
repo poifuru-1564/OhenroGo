@@ -115,19 +115,19 @@ class TempleTableSeeder extends Seeder
                 $ehime = DB::table('prefectures')->where('name', 'Ehime')->value('id');
                 $kagawa = DB::table('prefectures')->where('name', 'Kagawa')->value('id');
 
-                if($index >= 1 && $index < 24)
+                if($index >= 0 && $index < 23)
                 {
                     return['name' => 'No. ' . ($index + 1) . ' ' . $data . ' temple',
                         'prefecture_id' => $tokushima
                     ];
                 }
-                elseif ($index >= 24 && $index < 40)
+                elseif ($index >= 23 && $index < 39)
                 {
                     return['name' => 'No. ' . ($index + 1) . ' ' . $data . ' temple',
                         'prefecture_id' => $kochi
                     ];
                 }
-                elseif ($index >= 40 && $index < 66)
+                elseif ($index >= 39 && $index < 65)
                 {
                     return['name' => 'No. ' . ($index + 1) . ' ' . $data . ' temple',
                         'prefecture_id' => $ehime

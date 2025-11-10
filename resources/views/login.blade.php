@@ -1,38 +1,47 @@
 @extends('layout.login_layout')
+@push('styles') 
+    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
+@endpush
 
 @section('login_right_content')
 
-<div class="right-box">
-    <h3>Login</h3>
 
-    <div class="login-form">
+<h3>Login</h3>
+@if (session('status'))
+    <span>{{ session('status') }}</span>
+    
+@endif
+
+
+<div class="login-form">
+    <form method="POST" action="{{ route('login') }}">
         <div class="form-elements">
-            <label for="email">Email: </label><br />
+            {{-- <label for="email">Email </label><br /> --}}
             <input
             type="text"
             name="name"
             id=""
             placeholder="Email"
-            size="25"
+            required
             /><br />
 
-            <label for="password">Password: </label><br />
+            {{-- <label for="password">Password </label><br /> --}}
             <input
             type="password"
             name="password"
             id=""
             placeholder="Password"
-            size="25"
+            required
             /><br />
         </div>
         <button type="submit" class="btn">Login</button><br />
-    </div>
-    <p>
-    Don't have an account?
-    <a href="sign_up.html">Sign Up</a>
-    </p>
-    <p>Forgot password? <a href="reset_password.html">Click here</a></p>
-
+    </form>
 </div>
+<p>
+Don't have an account?
+<a href="{{ route('showRegister') }}">Sign Up</a>
+</p>
+<p>Forgot password? <a href="{{ route('showRequestReset') }}">Click here</a></p>
+
 
 @endsection

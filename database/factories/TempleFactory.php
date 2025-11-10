@@ -17,11 +17,13 @@ class TempleFactory extends Factory
      */
     public function definition(): array
     {
-        $temple= Temple::inRandomORder()->first();
+        return $this->temple(function () {
+            $temple = Temple::inRandomOrder()->first();
 
-        return [
+            return [
             'temple_id' =>$temple->id,
             'prefecture_id'=>$temple->prefecture_id,
-        ];
+            ];
+        });
     }
 }

@@ -8,6 +8,17 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Post extends Model
 {
+
+    protected $fillable = [
+        'user_id',
+        'title',
+        'body',
+        'photo_path',
+        'prefecture_id',
+        'temple_id',
+        'topic_id', 
+        'status_id'
+    ];
     //
     public function prefecture(): HasOne
     {
