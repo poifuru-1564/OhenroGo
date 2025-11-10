@@ -1,32 +1,89 @@
-.body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+@charset "UTF-8";
+*/ * {
+    box-sizing: border-box;
 }
+
 .categories {
-    display: flex;
-    position: sticky;
-    justify-content: center;
     align-items: center;
     position: fixed;
     top: 0;
-    left: 0;
-    width: 100%;
     height: 7vh;
-    background-color: #ffffff;
     z-index: 1000;
-}
-.category-toggle-button {
+    padding: 0;
+
     display: flex;
-    align-items: center;
+    justify-content: space-between;
+    width: 95%;
+    background: white;
+    gap: 0.5vw;
+}
+
+.category-menu.open {
+    display: block;
+}
+
+.category-item {
+    flex: 1;
+    position: relative;
+    min-width: 0;
+}
+
+.category-toggle-button {
+    width: 100%;
     background-color: #75ad6f;
     border: none;
     color: white;
-    padding: 1em 2em;
+    padding: 1em 2.5em 1em 1em;
+    font-size: clamp(0.7rem, 1.4vw, 1rem);
     cursor: pointer;
-    margin: 1vh;
-    text-size-adjust: auto;
-    font-size: 1em;
+    margin: 0;
+    min-width: 0;
+}
+
+@media (max-width: 480px) {
+    .category-toggle-button {
+        padding: 1em 2em 1em 1em;
+    }
+}
+
+.category-toggle-button::after {
+    content: "▼";
+    position: absolute;
+    right: 1em;
+    opacity: 0.7;
+}
+
+.category-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+
+    width: 90%;
+    display: none;
+    background: #75ad6f;
+    color: white;
+    padding: 0.5em;
+    margin: 0;
+    font-size: clamp(0.7rem, 1.4vw, 1rem);
+    white-space: wrap;
+}
+.category-menu p {
+    margin: 0;
+    padding: 0.5em 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+    cursor: pointer;
+}
+.category-menu p.active {
+    background-color: #51784d;
+    color: white;
+    font-weight: bold;
+}
+.category-menu p:last-child {
+    border-bottom: none;
+}
+
+.category-menu.open {
+    display: block;
 }
 
 .post-category {
@@ -43,12 +100,6 @@
 .card-img-top {
     width: 100%;
     height: auto;
-}
-
-.category-toggle-button.active {
-    background-color: #63935e;
-    color: white;
-    border: none;
 }
 
 .blog-card {
@@ -72,14 +123,7 @@
     align-items: center;
     margin-bottom: 2vh;
 }
-.side-buttons {
-    position: fixed;
-    top: 80%;
-    right: 3vw;
-    display: flex;
-    flex-direction: column;
-    gap: 2vh;
-}
+
 .blog-body {
     padding: 1.5em;
     font-size: 1.2em;
@@ -88,30 +132,64 @@
     width: 60vw;
     height: auto;
 }
+.post-categories {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5em;
+    margin-bottom: 1em;
+}
+.side-buttons {
+    position: fixed;
+    top: 80%;
+    right: 3vw;
+    display: flex;
+    flex-direction: column;
+    gap: 2vh;
+}
 
 .side-button {
     background-color: #ff7e1c;
-    width: 7vw;
-    height: 7vh;
+    width: 12vh;
+    aspect-ratio: 1 / 0.7;
+
     border: none;
     color: white;
     padding: 1em 1em;
     cursor: pointer;
+    font-size: 1em;
+    white-space: normal;
+    word-wrap: break-word;
 }
+
+.side-button.active {
+    background-color: #64391a;
+    color: white;
+    border: none;
+}
+
+@media (max-width: 600px) {
+    .side-button {
+        width: 100px;
+        height: 8vh;
+        aspect-ratio: auto;
+        font-size: 0.7em;
+    }
+}
+
 .blog-card-header {
     display: flex;
     justify-content: space-between;
     width: 60vw;
     align-items: center;
     padding: 1em;
-    font-size: 1.5em;
+    font-size: 1.2em;
     color: black;
 }
 .likes {
     display: flex;
     justify-content: flex-start;
     padding: 1.5em;
-    font-size: 1.5em;
+    font-size: 1.2em;
     color: black;
     margin: 0;
     width: 85%;
