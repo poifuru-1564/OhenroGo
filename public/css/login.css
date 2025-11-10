@@ -1,0 +1,131 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    /* background-image: url(img/IMG_5193.HEIC);
+    background-size: cover; */
+    background-color: rgb(226, 226, 226);
+    height: 100vh;
+    text-align: center;
+    font-family: "Stack Sans Text", sans-serif;
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    padding: 5px 10px;
+    font-family: inherit;
+    cursor: pointer;
+    border: 0;
+    background-color: rgb(226, 226, 226);
+    border-radius: 10%;
+}
+.btn:hover {
+    background-color: rgb(204, 203, 203);
+}
+
+/* .overlay {
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
+    background-color: rgba(0, 0, 0, 0.427);
+} */
+
+.container {
+    background-color: rgba(255, 255, 255, 0.911);
+    width: 60%;
+    height: 70vh;
+    margin: auto;
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.25), 0 6px 20px 0 rgba(0, 0, 0, 0.1);
+}
+
+.left-box {
+    float: left;
+    width: 45%;
+    height: inherit;
+    background-image: url("../img/Login.png");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.left-box h1 {
+    text-align: left;
+    margin-top: 20px;
+    padding-left: 20px;
+}
+
+p {
+    margin-bottom: 10px;
+    font-size: 0.8rem;
+}
+
+.right-box-container {
+    align-items: center;
+}
+
+.right-box {
+    float: right;
+    width: 55%;
+    height: inherit;
+    background-color: inherit;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.login-form {
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.form-elements {
+    text-align: center;
+    margin: auto;
+}
+
+.form-elements input {
+    margin-bottom: 18px;
+    margin-top: 5px;
+    padding: 3px;
+}
+.form-elements label {
+    padding-left: 3px;
+}
+
+.register-2 {
+    display: none;
+}
+.role-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.role {
+    text-align: left;
+}
+.role input {
+    margin-bottom: 10px;
+}
+.registerbtn {
+    font-size: 0.7rem;
+    margin-bottom: 15px;
+}
+.request h6 {
+    width: 60%;
+    text-align: left;
+    color: darkgrey;
+    margin: 0 auto 15px auto;
+}
+
+.request button {
+    font-size: 0.8rem;
+}
