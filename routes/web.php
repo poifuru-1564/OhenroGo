@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 
-
 Route::get('/home', function () {
     return view('welcome');
 })->name('home');
@@ -12,7 +11,6 @@ Route::get('/home', function () {
 Route::middleware('guest')->group(function () { 
     Route::get('/register', [AuthController::class, 'showRegister'])->name('showRegister');
     Route::post('/register', [AuthController::class,'register'])->name('register');
-
 
     Route::get('/', [AuthController::class, 'showLogin'])->name('showLogin');
     Route::post('/', [AuthController::class, 'login'])->name('login');
