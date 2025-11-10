@@ -16,6 +16,7 @@
     <body>
         <!-- Categories-->
         <div class="categories">
+            <div class="category-item">
                 <button class="category-toggle-button" type="button" >Prefectures</button>
                 <div class ="category-menu">
                     <p>Prefecture 1</p>
@@ -23,6 +24,8 @@
                     <p>Prefecture 3</p>
                     <p>Prefecture 4</p>
                 </div>
+            </div>
+            <div class="category-item">
                 <button class="category-toggle-button" type="button" >Location</button>
                 <div class ="category-menu">
                     <p>Location 1</p>
@@ -30,6 +33,8 @@
                     <p>Location 3</p>
                     <p>Location 4</p>
                 </div>
+            </div>
+            <div class="category-item">
                 <button class="category-toggle-button" type="button" >Status</button>
                 <div class ="category-menu">
                     <p>Status 1</p>
@@ -37,6 +42,8 @@
                     <p>Status 3</p>
                     <p>Status 4</p>
                 </div>
+            </div>
+            <div class="category-item">
                 <button class="category-toggle-button" type="button" >Topic</button>
                 <div class ="category-menu">
                     <p>Topic 1</p>
@@ -44,6 +51,8 @@
                     <p>Topic 3</p>
                     <p>Topic 4</p>
                 </div>
+            </div>
+            <div class="category-item">
                 <button class="category-toggle-button" type="button" >User Role</button>
                 <div class ="category-menu">
                     <p>User Role 1</p>
@@ -51,6 +60,7 @@
                     <p>User Role 3</p>
                     <p>User Role 4</p>
                 </div>
+            </div>
         </div>
  
 
