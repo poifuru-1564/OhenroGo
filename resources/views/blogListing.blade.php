@@ -125,10 +125,12 @@
 
         <!-- side buttons-->
         <div class="side-buttons">
-            <a href="#!"><button class="side-button">Manage Your Blog</button></a>
-            <a href="#!"><button class="side-button">Log out</button></a>
+            <div class="upper-side-buttons"></div>
+            <div class="low-side-buttons">
+                <a href="/manageOwnBlog"><button class="side-button">Manage Your Blog</button></a>
+                <a href="/login"><button class="side-button">Log out</button></a>
+            </div>
         </div>
-
     </body>
 </html>
 
