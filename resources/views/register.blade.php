@@ -14,7 +14,7 @@
                 <input
                     type="text"
                     name="name"
-                    id=""
+                    id="name"
                     placeholder="Username"
                     required
                 /><br />
@@ -23,7 +23,7 @@
                 <input
                     type="text"
                     name="email"
-                    id=""
+                    id="email"
                     placeholder="Email"
                     required
                 /><br />
@@ -31,11 +31,26 @@
                 {{-- <label for="password">Password: </label><br /> --}}
                 <input
                     type="password"
-                    name="password_confirmation"
-                    id=""
+                    name="password"
+                    id="password"
                     placeholder="Password"
                     required
                 /><br />
+                {{-- <input
+                    type="password"
+                    name="password_confirmation"
+                    id=""
+                    placeholder="Confirm Password"
+                    required
+                /><br /> --}}
+
+                {{-- <label for=""></label>
+
+                <select name="" id="">
+                    <option value="{{ DB::table('roles')->where('name', 'Pilgrims')->value('id') }}">Pilgrims</option>
+                    <option value="{{ DB::table('roles')->where('name', 'Locals')->value('id') }}">Local</option>
+                    <option value="{{ DB::table('roles')->where('name', 'Hotel and Inn Owners')->value('id') }}">Hotel Owner</option>
+                </select> --}}
             </div>
 
             {{-- js >> press button and display:none; the current right box / enable the new right box --}}
@@ -49,22 +64,21 @@
             ><br />
         </div>
 
-        {{-- new right box for selecting roles --}}
         <div class="register-2" id="registerForm2">
             <h3>Select your Role:</h3>
                 <div class="role-container">
                     <div class="role">
-                        <input type="radio" name="role" id="pilgrim" value="{{ DB::table('roles')->where('name', 'Pilgrims')->value('id') }}" />
+                        <input type="radio" name="role_id" id="pilgrim" value="{{ DB::table('roles')->where('name', 'Pilgrims')->value('id') }}" />
                         <label for="pilgrim">Pilgrim</label><br />
-                        <input type="radio" name="role" id="local" value="{{ DB::table('roles')->where('name', 'Locals')->value('id') }}" />
+                        <input type="radio" name="role_id" id="local" value="{{ DB::table('roles')->where('name', 'Locals')->value('id') }}" />
                         <label for="local">Local</label><br />
                         <input
                         type="radio"
-                        name="role"
+                        name="role_id"
                         id="hotel-owner"
                         value="{{ DB::table('roles')->where('name', 'Hotel and Inn Owners')->value('id') }}"
                         />
-                        <label for="hotel-owner">Hotel owner</label><br />
+                        <label for="hotel-owner">Hotel Owner</label><br />
                     </div>
                 </div>
                 

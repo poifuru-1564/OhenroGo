@@ -16,8 +16,6 @@ use Illuminate\Support\Facades\Redis;
 
 class AuthController extends Controller
 {
-
-
     public function showRegister ()
     {
         return view('register');
@@ -42,8 +40,9 @@ class AuthController extends Controller
     {
         $requestUser = $request->validate([
             'name' => ['required', 'unique:users,name'],
-            'email' => ['requied', 'email', 'unique:users,email'],
-            'password' => ['required', 'string', 'confirmed', Rules\Password::default()],
+            'email' => ['required', 'email', 'unique:users,email'],
+            'password' => ['required', 'string'],
+            'role_id' =>['required']
         ]);
 
         $user = User::create($requestUser);
@@ -57,8 +56,8 @@ class AuthController extends Controller
     {
         $requestUser = $request->validate([
             'name' => ['required', 'unique:users,name'],
-            'email' => ['requied', 'email', 'unique:users,email'],
-            'password' => ['required', 'string', 'confirmed', Rules\Password::default()],
+            'email' => ['required', 'email', 'unique:users,email'],
+            'password' => ['required', 'string', 'confirmed'],
         ]);
 
         if (Auth::attempt($requestUser)) 
