@@ -27,4 +27,10 @@ Route::middleware('guest')->group(function () {
 // routes only for logged in users
 Route::middleware('auth')->controller(AuthController::class)->group(function () { 
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/blogEditor', function () {
+    return view('blogEditor');
+});
+
+Route::get('/blogListing', function () {
+    return view('blogListing');
 });
