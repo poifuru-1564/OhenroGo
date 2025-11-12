@@ -1,14 +1,13 @@
-@extends('app')
-@section('content')
+@extends('blogListing')
+@section('posts-content')
 
-<div class="content">
+{{-- <div class="content">
 
 
   <div class="category-container">
     <!-- Categories-->
     <div class="categories">
       <form method="post" class="filter-form" action="{{ route('post.filter') }}">
-        @csrf
 
         <select name="prefecture_id" onchange="this.form.submit()">
           <option value="">---Select Prefecture---</option>
@@ -48,20 +47,48 @@
           @endforeach
         </select>
 
-        <button type="submot">Filter</button>
-
       </form>
     </div>
   </div>
 
   <div class="post-container">
-    <!-- Page content-->
-    @yield('posts-content')
-    <p>Welcome to Ohenro GO!</p>
+    <!-- Page content--> --}}
+    <div class="blog-listing-content">
+      <!-- Blog entries-->
+      <!-- Blog post cards-->
 
-  </div>
+      @foreach ($posts as $post)
+        
+        <div class="blog-card">
+          <div class="blog-card-header">
+            <div class="userID">{{ $post->user }}</div>
+            <div class="date">{{ $post->created_at }}</div>
+          </div>
+
+          <div class="blog-body">
+            <h2 class="blog-title">{{ $post->title }}</h2>
+            <div class="post-categories" type="box">
+              <box class="post-category" type="box">{{ $post->temple }}</box>
+              <box class="post-category" type="box">{{ $post->prefecture }}</box>
+              <box class="post-category" type="box">{{ $post->status }}</box>
+              <box class="post-category" type="box">{{ $post->topic }}</box>
+              <box class="post-category" type="box">{{ $post->user->role }}</box>
+            </div>
+            <p class="blog-text">{{$post->body}}</p>
+            <img
+              class="card-img-top"
+              src="{{ asset( $post->photo_path ) }}"
+              alt="..."
+            />
+          </div>
+          {{-- <div class="likes">Liked by</div> --}}
+        </div>
+      @endforeach
+      
+    </div>
+  {{-- </div>
 
 
-</div>
+</div> --}}
 
 @endsection

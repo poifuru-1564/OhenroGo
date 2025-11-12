@@ -18,6 +18,8 @@
 
           {{-- Right box content --}}
           @yield('login_right_content')
+
+              
         </div>
       </div>
     </div>

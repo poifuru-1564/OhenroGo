@@ -2,10 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-
-Route::get('/home', function () {
-    return view('welcome');
-})->name('home');
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\PrefectureController;
+use App\Models\Post;
 
 // routes only for logged out users
 Route::middleware('guest')->group(function () { 
@@ -20,15 +19,20 @@ Route::middleware('guest')->group(function () {
 
     Route::get('/resetPassword/{token}', [AuthController::class, 'showResetPassword'])->name('showResetPassword');
     Route::post('/resetPassword',[AuthController::class, 'resetPassword'])->name('resetPassword');
+   
 });
 
 // routes only for logged in users
 Route::middleware('auth')->controller(AuthController::class)->group(function () { 
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-Route::get('/blogEditor', function () {
-    return view('blogEditor');
+  Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 });
 
-Route::get('/blogListing', function () {
-    return view('blogListing');
-});
+
+Route::get('/blogEditor', function () {
+    return view('blogEditor');
+})->name('edit-blog');
+
+Route::get('/blogListing', [PostController::class, 'select'])->name('home');
+// Route::get('/blogListing/{prefecture}/temples', [PostController::class, 'getTemples'])->name('filteredTempleOptions');
+
+Route::post('/blogListing/filter', [PostController::class, 'filter'])->name('post.filter');

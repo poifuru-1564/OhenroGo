@@ -1,4 +1,4 @@
-@extends('layout.login_layout')
+@extends('auth.login_layout')
 @push('styles') 
     <link rel="stylesheet" href="{{ asset('css/login.css') }}">
 @endpush

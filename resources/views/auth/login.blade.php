@@ -1,25 +1,17 @@
-@extends('layout.login_layout')
-@push('styles') 
-    <link rel="stylesheet" href="{{ asset('css/login.css') }}">
-@endpush
+@extends('auth.login_layout')
 
 @section('login_right_content')
 
-
 <h3>Login</h3>
-@if (session('status'))
-    <span>{{ session('status') }}</span>
-    
-@endif
-
 
 <div class="login-form">
     <form method="POST" action="{{ route('login') }}">
+        @csrf
         <div class="form-elements">
             {{-- <label for="email">Email </label><br /> --}}
             <input
             type="text"
-            name="name"
+            name="email"
             id=""
             placeholder="Email"
             required
@@ -36,6 +28,18 @@
         </div>
         <button type="submit" class="btn">Login</button><br />
     </form>
+
+    @if ($errors->any())
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li class="errorMessage">
+                    {{ $error }}
+                </li>
+            @endforeach
+        </ul>
+        
+    @endif
+
 </div>
 <p>
 Don't have an account?
