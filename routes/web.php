@@ -2,10 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-
-Route::get('/home', function () {
-    return view('welcome');
-})->name('home');
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\PrefectureController;
+use App\Models\Post;
 
 // routes only for logged out users
 Route::middleware('guest')->group(function () { 

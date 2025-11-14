@@ -18,31 +18,45 @@ class AuthController extends Controller
 {
     public function showRegister ()
     {
-        return view('register');
+        return view('auth.register');
     }
 
     public function showLogin()
     {
-        return view('login');
+        return view('auth.login');
     }
 
     public function showRequestReset()
     {
-        return view('requestReset');
+        return view('auth.requestReset');
     }
 
     public function showResetPassword(string $token)
     {
-        return view('resetPassword', ['token' => $token]);
+        return view('auth.resetPassword', ['token' => $token]);
     } 
 
     public function register(Request $request)
     {
         $requestUser = $request->validate([
-            'name' => ['required', 'unique:users,name'],
+            'name' => ['required', 'max:25', 'unique:users,name'],
             'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'string'],
+            'password' => ['required', 'min:8'],
             'role_id' =>['required']
+        ],
+        [
+            'name.required' => 'Username is required.',
+            'name.unique' => 'Entered username is already in use. Choose a different username.',
+            'name.max' => 'Username should be under 25 characters.',
+
+            'email.required' => 'Email is required to register.',
+            'email.email' => 'Enter a valid email address',
+            'email.unique' => 'Entered email is already in use.',
+
+            'password.required' => 'Password is required.',
+            'password.min' => 'Password should be at least 8 characters',
+            
+            'role_id.required' => 'Select your role.',
         ]);
 
         $user = User::create($requestUser);
@@ -52,12 +66,12 @@ class AuthController extends Controller
         return redirect()->route('home');
     }
 
+
     public function login(Request $request)
     {
         $requestUser = $request->validate([
-            'name' => ['required', 'unique:users,name'],
-            'email' => ['required', 'email', 'unique:users,email'],
-            'password' => ['required', 'string', 'confirmed'],
+            'email' => ['required', 'email'],
+            'password' => ['required'],
         ]);
 
         if (Auth::attempt($requestUser)) 
@@ -65,13 +79,24 @@ class AuthController extends Controller
             $request->session()->regenerate(); //regenerate session id
             return redirect()->route('home');
         }
+
+        return back()->withErrors([
+            'email.required' => 'Email is required.',
+            'email.email' => 'Enter a valid email address',
+
+            'password.required' => 'Password is required.',
+        ]);
+        
     }
 
     public function logout(Request $request)
     {
-        Auth::logout();
+        Auth::guard('web')->logout();
+
         $request->session()->invalidate();
+
         $request->session()->regenerateToken();
+
         return redirect()->route('showLogin');
     }
 
