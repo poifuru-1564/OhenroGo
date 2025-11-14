@@ -19,25 +19,25 @@ class Post extends Model
         'topic_id', 
         'status_id'
     ];
-    //
-    public function prefecture(): HasOne
+    
+    public function prefecture(): BelongsTo
     {
-        return $this->hasOne(Prefecture::class);
+        return $this->belongsTo(Prefecture::class);
     }
 
-    public function temple(): HasOne
+    public function temple(): BelongsTo
     {
-        return $this->hasOne(Temple::class);
+        return $this->belongsTo(Temple::class);
     }
 
-    public function topic(): HasOne
+    public function topic(): BelongsTo
     {
-        return $this->hasOne(Topic::class);
+        return $this->belongsTo(Topic::class);
     }
 
-    public function status(): HasOne
+    public function status(): BelongsTo
     {
-        return $this->hasOne(Status::class);
+        return $this->belongsTo(Status::class);
     }
 
     public function user(): BelongsTo

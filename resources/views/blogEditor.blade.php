@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>BlogEditor</title>
-    <link href="{{asset('css/blogListing.css')}}" rel="stylesheet" />
-    <link href="{{asset('css/blogEditor.css')}}" rel="stylesheet" />
-</head>
-<body>
+@extends('layout.app')
+
+@section('content')
+
 
     <h1 class="header1">Blog Editor</h1>
     <div class="blog-listing-content">
@@ -26,6 +19,7 @@
                 <button class="category-toggle-button" type="button" >Topic</button>
                 <button class="category-toggle-button" type="button" >User Role</button>
             </div>
+            <ul id="category-list"></ul>
             <form action="title/content" method="POST">
         @csrf
         <div>
@@ -60,5 +54,28 @@
     </form>
     </div>
 
+<<<<<<< HEAD
+@endsection
+=======
 </body>
+<script>
+document.querySelectorAll('.category-toggle-button').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const category = btn.dataset.category; // 'prefectures' など
+    const res = await fetch(`/api/editor/categories/${category}`);
+    if (!res.ok) { alert('取得に失敗しました'); return; }
+    const items = await res.json();
+
+    const ul = document.getElementById('category-list');
+    ul.innerHTML = '';
+    items.forEach(row => {
+      const li = document.createElement('li');
+      li.textContent = `${row.id}: ${row.name}`;
+      ul.appendChild(li);
+    });
+  });
+});
+</script>
+
 </html>
+>>>>>>> f9f9c64 (ブログエディタにカテゴリリストを追加し、APIエンドポイントを設定)
