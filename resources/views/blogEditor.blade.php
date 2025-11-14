@@ -1,17 +1,63 @@
 @extends('layout.app')
-
 @section('content')
 
 
     <h1 class="header1">Blog Editor</h1>
-    <div class="blog-listing-content">
-    <div class="blog-card">
-        <div class="blog-card-header">
-            
+    <form action="/posts" method="POST" enctype="multipart/form-data">
+        @csrf
+        <select name="prefecture_id" class="filter-select">
+          <option value="">---Select Prefecture---</option>
+          @foreach ($prefectures as $prefecture)
+              <option value="{{ $prefecture->id }}">{{ $prefecture->name}}</option>
+          @endforeach
+        </select>
+
+        <select name="temple_id" class="filter-select">
+            <option value="">---Select Temple---</option>
+            @foreach ($temples as $temple)
+                <option value="{{ $temple->id }}">{{ $temple->name}}</option>
+            @endforeach
+        </select>
+
+
+        <select name="status_id" class="filter-select">
+            <option value="">---Select Status---</option>
+            @foreach ($status as $status)
+                <option value="{{ $status->id }}">{{ $status->name}}</option>
+            @endforeach
+        </select>
+
+
+        <select name="topic_id" class="filter-select">
+          <option value="">---Select Topic---</option>
+          @foreach ($topics as $topic)
+              <option value="{{ $topic->id }}">{{ $topic->name}}</option>
+          @endforeach
+        </select>
+
+
+        <select name="role_id" class="filter-select">
+          <option value="">---Select Role---</option>
+          @foreach ($roles as $role)
+              <option value="{{ $role->id }}">{{ $role->name }}</option>
+          @endforeach
+        </select>
+
+        <div>
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" placeholder="dd/mm" required>
         </div>
-            
-        
-        <div class="blog-body">
+
+        <div>
+            <label for="body">Content:</label>
+            <textarea id="body" name="body" placeholder="text here" rows="10" required></textarea>
+        </div>
+
+        <input type="file" id="image" name="image" accept="image/*" required>
+        <button class="discard-button" type="discard">Discard</button>
+        <button class="post-button" type="post">Post</button>
+    </form>
+        {{-- <div class="blog-body">
             <div class="editor-categories">
                 <button class="category-toggle-button" type="button" >Prefectures</button>
                 <button class="category-toggle-button" type="button" >Location</button>
@@ -22,10 +68,7 @@
             <ul id="category-list"></ul>
             <form action="title/content" method="POST">
         @csrf
-        <div>
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title" placeholder="dd/mm" required>
-        </div>
+
         <div>
             <label for="content">Content:</label>
             <textarea id="content" name="content" placeholder="text here" rows="10" required></textarea>
@@ -49,33 +92,8 @@
     <div class="likes">
     <form action="/submit-blog" method="POST">
         @csrf
-        <button class="discard-button" type="discard">Discard</button>
-        <button class="post-button" type="post">Post</button>
+
     </form>
-    </div>
+    </div> --}}
 
-<<<<<<< HEAD
 @endsection
-=======
-</body>
-<script>
-document.querySelectorAll('.category-toggle-button').forEach(btn => {
-  btn.addEventListener('click', async () => {
-    const category = btn.dataset.category; // 'prefectures' など
-    const res = await fetch(`/api/editor/categories/${category}`);
-    if (!res.ok) { alert('取得に失敗しました'); return; }
-    const items = await res.json();
-
-    const ul = document.getElementById('category-list');
-    ul.innerHTML = '';
-    items.forEach(row => {
-      const li = document.createElement('li');
-      li.textContent = `${row.id}: ${row.name}`;
-      ul.appendChild(li);
-    });
-  });
-});
-</script>
-
-</html>
->>>>>>> f9f9c64 (ブログエディタにカテゴリリストを追加し、APIエンドポイントを設定)

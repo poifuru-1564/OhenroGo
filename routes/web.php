@@ -28,10 +28,9 @@ Route::middleware('auth')->controller(AuthController::class)->group(function () 
 });
 
 
-Route::get('/blogEditor', function () {
-    return view('blogEditor');
-})->name('edit-blog');
 
+
+Route::get('/blogEditor', [PostController::class, 'create'])->name('edit-blog');
 
 
 Route::get('/home', [PostController::class, 'select'])->name('home');

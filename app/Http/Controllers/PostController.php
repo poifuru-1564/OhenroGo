@@ -9,8 +9,10 @@ use App\Models\Status;
 use App\Models\Temple;
 use App\Models\Topic;
 use App\Models\User;
+use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+
 
 use function PHPUnit\Framework\isEmpty;
 
@@ -81,6 +83,19 @@ class PostController extends Controller
         return view('blogListing.filter', compact('posts', 'prefectures', 'temples', 'status', 'topics', 'roles'));
 
     }
+
+    public function create()
+    {
+        $prefectures = Prefecture::all();
+        $temples = Temple::all();
+        $status = Status::all();
+        $topics = Topic::all();
+        $roles = Role::all();
+
+        return view('blogEditor', compact('prefectures', 'temples', 'status', 'topics', 'roles'));
+    }
+
+
 
     // public function filterTemples(Request $request)
     // {
