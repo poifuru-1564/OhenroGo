@@ -19,6 +19,7 @@
                 <button class="category-toggle-button" type="button" >Topic</button>
                 <button class="category-toggle-button" type="button" >User Role</button>
             </div>
+            <ul id="category-list"></ul>
             <form action="title/content" method="POST">
         @csrf
         <div>
@@ -53,4 +54,28 @@
     </form>
     </div>
 
+<<<<<<< HEAD
 @endsection
+=======
+</body>
+<script>
+document.querySelectorAll('.category-toggle-button').forEach(btn => {
+  btn.addEventListener('click', async () => {
+    const category = btn.dataset.category; // 'prefectures' など
+    const res = await fetch(`/api/editor/categories/${category}`);
+    if (!res.ok) { alert('取得に失敗しました'); return; }
+    const items = await res.json();
+
+    const ul = document.getElementById('category-list');
+    ul.innerHTML = '';
+    items.forEach(row => {
+      const li = document.createElement('li');
+      li.textContent = `${row.id}: ${row.name}`;
+      ul.appendChild(li);
+    });
+  });
+});
+</script>
+
+</html>
+>>>>>>> f9f9c64 (ブログエディタにカテゴリリストを追加し、APIエンドポイントを設定)
