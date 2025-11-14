@@ -12,23 +12,25 @@ use App\Models\User;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
+use function PHPUnit\Framework\isEmpty;
+
 class PostController extends Controller
 {
     //
-    public function show(Post $post)
-    {
-        $post = Post::all();
-        return view('blogListing', compact('post'));
-    }
+    // public function show(Post $post)
+    // {
+    //     $post = Post::all();
+    //     return view('blogListing', compact('post'));
+    // }
 
     public function select()
     {
         $prefectures = Prefecture::all();
         $temples = Temple::all();
-        $status = DB::table('status')->get();
+        $status = Status::all();
         $topics = Topic::all();
         $roles = Role::all();
-        return view('blogListing', compact( 'prefectures', 'temples', 'status', 'topics', 'roles'));
+        return view('blogListing.home', compact('prefectures', 'temples', 'status', 'topics', 'roles'));
     }
 
     public function filter(Request $request)
@@ -39,7 +41,7 @@ class PostController extends Controller
         $topic = $request->input('topic_id');
         $role = $request->input('role_id');
 
-        $posts = Post::all();
+        $posts = Post::query();
         if($prefecture != '')
         {
             $posts->where('prefecture_id', $prefecture);
@@ -58,11 +60,25 @@ class PostController extends Controller
         }
         if($role != '')
         {
-            $users = DB::table('users')->where('role_id', $role);
-            $posts->where('user_id', $users);
+            $users = User::where('role_id', $role)->pluck('id'); 
+            $posts->whereIn('user_id', $users);
         }
 
-        return view('blogListing.filter', compact('posts'));
+        $posts = $posts->with('prefecture', 'temple', 'status', 'topic', 'user.role')->get(); //returns a collection
+
+
+        if($posts->isEmpty())
+        {
+            return redirect()->route('home')->with('message', 'No matches found. Try Again (>_<)');
+        }
+
+        $prefectures = Prefecture::all();
+        $temples = Temple::all();
+        $status = Status::all();
+        $topics = Topic::all();
+        $roles = Role::all();
+
+        return view('blogListing.filter', compact('posts', 'prefectures', 'temples', 'status', 'topics', 'roles'));
 
     }
 

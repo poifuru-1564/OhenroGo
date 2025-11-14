@@ -9,9 +9,9 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Prefecture extends Model
 {
     //
-    public function post(): BelongsTo
+    public function post(): HasMany
     {
-        return $this->belongsTo(Post::class);
+        return $this->hasMany(Post::class);
 
     }
 

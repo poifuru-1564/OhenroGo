@@ -32,7 +32,10 @@ Route::get('/blogEditor', function () {
     return view('blogEditor');
 })->name('edit-blog');
 
-Route::get('/blogListing', [PostController::class, 'select'])->name('home');
+
+
+Route::get('/home', [PostController::class, 'select'])->name('home');
+
 // Route::get('/blogListing/{prefecture}/temples', [PostController::class, 'getTemples'])->name('filteredTempleOptions');
 
 Route::post('/blogListing/filter', [PostController::class, 'filter'])->name('post.filter');

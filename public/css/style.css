@@ -44,110 +44,46 @@
     color: white;
 }
 
-.content {
-}
-
 .category-container {
-    width: 90%;
-    margin: auto;
-    padding-top: 60px;
+    width: 100%;
+    margin-bottom: 20px;
+    padding-top: 80px;
 }
 
-.categories select {
-    display: flex;
-    justify-content: space-between;
+select {
+    appearance: none;
+    font: inherit;
+    padding: 1rem;
+    border: none;
+    border-radius: 1rem;
+    background-color: navy;
+    line-height: 1.6;
 }
 
+.filter-form option {
+    background-color: lightblue;
+}
 .categories {
-    align-items: center;
-    position: fixed;
-    top: 0;
-    height: 7vh;
-    z-index: 1000;
-
-    display: flex;
-    justify-content: space-between;
+    justify-self: center;
     width: 100%;
     background: white;
-    gap: 0.5vw;
+    margin: auto;
 }
 
-.category-menu.open {
-    display: block;
+.errorMessage {
+    text-align: center;
+    font-size: smaller;
+    color: red;
+    margin: 20px auto;
 }
 
-.category-item {
-    flex: 1;
-    position: relative;
-    min-width: 0;
-}
+/* main content */
 
-.category-toggle-button {
-    width: 100%;
-    background-color: #75ad6f;
-    border: none;
-    color: white;
-    padding: 1em 2.5em 1em 1em;
-    font-size: clamp(0.7rem, 1.4vw, 1rem);
-    cursor: pointer;
-    min-width: 0;
-}
-
-@media (max-width: 480px) {
-    .category-toggle-button {
-        padding: 1em 2em 1em 1em;
-    }
-}
-
-.category-toggle-button::after {
-    content: "▼";
-    position: absolute;
-    right: 1em;
-    opacity: 0.7;
-}
-
-.category-menu {
-    position: absolute;
-    top: 100%;
-    left: 0;
-
-    width: 90%;
-    display: none;
-    background: #75ad6f;
-    color: white;
-    padding: 0.5em;
-    margin: 0;
-    font-size: clamp(0.7rem, 1.4vw, 1rem);
-    white-space: wrap;
-}
-.category-menu p {
-    margin: 0;
-    padding: 0.5em 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-    cursor: pointer;
-}
-.category-menu p.active {
-    background-color: #51784d;
-    color: white;
-    font-weight: bold;
-}
-.category-menu p:last-child {
-    border-bottom: none;
-}
-
-.category-menu.open {
-    display: block;
-}
-
-.post-category {
-    justify-content: center;
+.post-container {
+    text-align: center;
+    border: solid black;
     align-items: center;
-    background-color: #75ad6f;
-    border: none;
-    color: white;
-    padding: 0.5em 2em;
-    width: auto;
-    margin: 0.5vh;
+    min-height: 500px;
 }
 
 .card-img-top {
@@ -159,12 +95,13 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding-top: 1vh;
     width: 70vw;
     height: auto;
     background-color: #ffecc3;
     justify-content: flex-start;
-    margin-top: 7vh;
+    margin: 25px auto;
+    border: solid black;
+    padding-bottom: 20px;
 }
 
 .blog-listing-content {
@@ -185,49 +122,6 @@
     width: 60vw;
     height: auto;
 }
-.post-categories {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5em;
-    margin-bottom: 1em;
-}
-.side-buttons {
-    position: fixed;
-    top: 80%;
-    right: 3vw;
-    display: flex;
-    flex-direction: column;
-    gap: 2vh;
-}
-
-.side-button {
-    background-color: #ff7e1c;
-    width: 12vh;
-    aspect-ratio: 1 / 0.7;
-
-    border: none;
-    color: white;
-    padding: 1em 1em;
-    cursor: pointer;
-    font-size: 1em;
-    white-space: normal;
-    word-wrap: break-word;
-}
-
-.side-button.active {
-    background-color: #64391a;
-    color: white;
-    border: none;
-}
-
-@media (max-width: 600px) {
-    .side-button {
-        width: 100px;
-        height: 8vh;
-        aspect-ratio: auto;
-        font-size: 0.7em;
-    }
-}
 
 .blog-card-header {
     display: flex;
@@ -238,6 +132,29 @@
     font-size: 1.2em;
     color: black;
 }
+
+.blog-text {
+    border: solid black;
+    margin-bottom: 20px;
+}
+
+.post-category-container {
+    margin: 20px auto;
+    justify-content: center;
+}
+
+.post-category {
+    background-color: #75ad6f;
+    border: none;
+    color: white;
+    padding: 0.3em 1em;
+    width: auto;
+    font-size: smaller;
+    display: inline-block;
+    height: fit-content;
+    margin: 3px 0px;
+}
+
 .likes {
     display: flex;
     justify-content: flex-start;
@@ -250,7 +167,7 @@
 
 .footer {
     text-align: center;
+    align-items: center;
     background-color: lightgray;
     padding: 25px;
-    margin-top: 50px;
 }
