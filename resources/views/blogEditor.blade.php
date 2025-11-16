@@ -53,7 +53,7 @@
             <textarea id="body" name="body" placeholder="text here" rows="10" required></textarea>
         </div>
 
-        <input type="file" id="image" name="image" accept="image/*" required>
+        <input type="file" id="image" name="image" accept="image/*">
         <button class="discard-button" type="discard">Discard</button>
         <button class="post-button" type="post">Post</button>
     </form>
