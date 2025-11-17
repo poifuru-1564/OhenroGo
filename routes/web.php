@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\PrefectureController;
+use App\Http\Controllers\UserController;
 use App\Models\Post;
 
 // routes only for logged out users
@@ -17,23 +17,23 @@ Route::middleware('guest')->group(function () {
     Route::get('/requestReset', [AuthController::class, 'showRequestReset'])->name('showRequestReset');
     Route::post('/requestReset', [AuthController::class, 'requestReset'])->name('requestReset');
 
-    Route::get('/resetPassword/{token}', [AuthController::class, 'showResetPassword'])->name('showResetPassword');
+    Route::get('/resetPassword', [AuthController::class, 'showResetPassword'])->name('showResetPassword');
     Route::post('/resetPassword',[AuthController::class, 'resetPassword'])->name('resetPassword');
    
 });
 
+
 // routes only for logged in users
 Route::middleware('auth')->controller(AuthController::class)->group(function () { 
+  Route::get('/home', [PostController::class, 'select'])->name('home');
   Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+  Route::post('/blogListing/filter', [PostController::class, 'filter'])->name('post.filter');
+  Route::get('/profile', [UserController::class, 'profile'])->name('profile');
+  Route::post('/profile/update', [UserController::class, 'distance'])->name('distance');
+  Route::get('/blogEditor', [PostController::class, 'create'])->name('posts.create');
+  Route::get('/home', [PostController::class, 'select'])->name('home');
+  Route::post('/blogEditor', [PostController::class, 'store'])->name('posts.store');
+
+
+  Route::post('/blogListing/filter', [PostController::class, 'filter'])->name('post.filter');
 });
-
-
-
-
-Route::get('/blogEditor', [PostController::class, 'create'])->name('posts.create');
-Route::get('/home', [PostController::class, 'select'])->name('home');
-Route::post('/blogEditor', [PostController::class, 'store'])->name('posts.store');
-
-// Route::get('/blogListing/{prefecture}/temples', [PostController::class, 'getTemples'])->name('filteredTempleOptions');
-
-Route::post('/blogListing/filter', [PostController::class, 'filter'])->name('post.filter');

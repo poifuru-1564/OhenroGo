@@ -9,6 +9,7 @@ use Pest\Mutate\Mutators\Visibility\FunctionPublicToProtected;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
@@ -31,9 +32,9 @@ class AuthController extends Controller
         return view('auth.requestReset');
     }
 
-    public function showResetPassword(string $token)
+    public function showResetPassword()
     {
-        return view('auth.resetPassword', ['token' => $token]);
+        return view('auth.resetPassword');
     } 
 
     public function register(Request $request)
@@ -77,7 +78,8 @@ class AuthController extends Controller
         if (Auth::attempt($requestUser)) 
         {
             $request->session()->regenerate(); //regenerate session id
-            return redirect()->route('home');
+            $user = Auth::user();
+            return redirect()->route('home')->with('user', $user);
         }
 
         return back()->withErrors([
@@ -117,9 +119,9 @@ class AuthController extends Controller
     
     function ResetPassword(Request $request) {
         $request->validate([
-            'token' => ['required'],
+            'name' => ['required'],
             'email' => ['required', 'email'],
-            'password' => ['required', 'min:8','confirmed'],
+            'password' => ['required', 'min:8', 'confirmed'],
         ]);
     
         $status = Password::reset(
@@ -138,6 +140,40 @@ class AuthController extends Controller
         return $status === Password::PasswordReset //if password was successfully reset
             ? redirect()->route('login')->with('status', __($status))
             : back()->withErrors(['email' => [__($status)]]);
+
+        return back()->withErrors([
+            'name.required' => 'Username is required.',
+            'name.max' => 'Username should be under 25 characters.',
+
+            'email.required' => 'Email is required to reset password.',
+            'email.email' => 'Enter a valid email address',
+
+            'password.required' => 'Password is required.',
+            'password.min' => 'Password should be at least 8 characters',
+        ]);
     }
+
+    // function ResetPassword(Request $request)
+    // {
+    //     $request->validate([
+    //         'name' => ['required'],
+    //         'email' => ['required', 'email'],
+    //         'password' => ['required', 'min:8', 'confirmed'],
+    //     ]);
+
+        
+
+    //     return back()->withErrors([
+    //         'name.required' => 'Username is required.',
+    //         'name.max' => 'Username should be under 25 characters.',
+
+    //         'email.required' => 'Email is required to reset password.',
+    //         'email.email' => 'Enter a valid email address',
+
+    //         'password.required' => 'Password is required.',
+    //         'password.min' => 'Password should be at least 8 characters',
+    //     ]);
+
+    // }
     
 }

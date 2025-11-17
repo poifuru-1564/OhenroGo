@@ -18,12 +18,11 @@ use function PHPUnit\Framework\isEmpty;
 
 class PostController extends Controller
 {
-    //
-    // public function show(Post $post)
-    // {
-    //     $post = Post::all();
-    //     return view('blogListing', compact('post'));
-    // }
+    
+    public function show()
+    {
+        return view('blogListing.home');
+    }
 
     public function select()
     {
