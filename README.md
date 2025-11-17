@@ -1,11 +1,22 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# OHENRO GO!
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+### Project Member: Mei Hiraoka, Ayaka Nakajima, Sumire Iwaki, Mashiro Yamada
+
+## Project Description
+
+**Project Abstruct**  
+In this project, we will develop the web application called “Ohenro Go!”. “Ohenro” refers to the Japanese Buddhist pilgrimage that involves visiting 88 Buddhist temples on Shikoku Island. This application will provide the blogging features for English-speaking pilgrims.
+
+**Aims of the Application**  
+While the number of Japanese pilgrims has dramatically decreased in the past decades, the number of foreign pilgrims has been increasing. In 2023, foreign pilgrims accounted for between 16.6% and 44.0% of the total. As the demand for English-language information grows, there is still no dedicated web or mobile application that offers blogging or posting features for them. A few Facebook communities have been organized by foreign pilgrims, but Facebook does not provide the feature that allows users to categorize the blogs with organized structure (e.g categorize by location, user role, topics of the blog, or the pilgrims status). Creating web application for foreign pilgrims enables to accumulate essential information that supports a safe and meaningful journey. This application aims to provide a solution to this demand.
+
+In this project, we are going to use HTML, CSS, Java Script, PHP, and Laravel which are fundamental web application languages and framework. Implementing blog features requires an understanding of how the database and the web front/back will be related each other, and how the front will be constructed. So that it requires basic PHP knowledge to make the backend, and HTML, CSS, JS for frontend, and all features will be combined by laravel framework. Through this project, we aim to gain practical experience in applying this knowledge.
+
+**Similar Web-based Project**  
+There are some services for Ohenro; “Henro no Akari + Plus” and “Dojyo-ninin” are the mobile applications that provide album and comment features. However, users cannot share their posts with other users in those applications. So, we would like to add the feature to make some differentiation with the competitors.
+
+**Target Audience**  
+The target audience is foreign pilgrims. The application benefits English-speaking pilgrims with the pilgrims’ community that aims to share information of Ohenro. The structured categorization of blogs allow user to access the information easily.
 
 ## ER diagram(draw.io)
 
@@ -15,62 +26,90 @@ https://drive.google.com/file/d/1Ii0g0MHEgcG1RKQVOaHIhHK3JjyYO3Uw/view?usp=shari
 
 https://www.figma.com/design/YPTE7VIw6KqzvjQmYUsQyL/Ohenro-GO-?node-id=131-1689&t=pMLZ63SqllwnajAl-1
 
-## resources
+## Core Features and Functionality
 
-Laravel framework
-my sql
+### Blogging Fucntionality
 
-## instruction
+**Features:**
 
-## About Laravel
+-   **Edit blog feature:** Users can create and edit their blogs
+-   **Uploading image fetuare:** Users can upload a image per one post
+-   **Delete blog feature:** Users can delete their blogs
+-   **Categorization feature:** Categorize the blog by "Prefectures", "Location" (temples), "Status", "Topic", and "user role". Users can decide categories of the blog when posting it and search with specific categories.
+-   **Time stamp:** The uploaded time is showed with the post
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+### Account Management Functionality
 
--   [Simple, fast routing engine](https://laravel.com/docs/routing).
--   [Powerful dependency injection container](https://laravel.com/docs/container).
--   Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
--   Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
--   Database agnostic [schema migrations](https://laravel.com/docs/migrations).
--   [Robust background job processing](https://laravel.com/docs/queues).
--   [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**Features:**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+-   **Create account feature:** Users can create account
+-   **Log-in feature:** Users can log-in their account
+-   **Log-out feature:** Users can log-out their account
+-   **Delete account feature:** Users can delete their account
 
-## Learning Laravel
+## Getting Started
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Prerequisites
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+1. Git
+2. VS Code
+3. laravel herd
+4. mysql
+5. mysql workbench
+6. Composer
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Instruction
 
-## Laravel Sponsors
+Those instructions are for Windows
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+**Installing Git:**
 
-### Premium Partners
+1. Go to website: https://git-scm.com/install/
+2. Download the installer that corresponds to your OS.
+3. Run the installer.
+4. Default settings should work for this project.
+5. (Optional) To confirm that Git was installed successfully, run the following command in terminal: git --version
 
--   **[Vehikl](https://vehikl.com)**
--   **[Tighten Co.](https://tighten.co)**
--   **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
--   **[64 Robots](https://64robots.com)**
--   **[Curotec](https://www.curotec.com/services/technologies/laravel)**
--   **[DevSquad](https://devsquad.com/hire-laravel-developers)**
--   **[Redberry](https://redberry.international/laravel-development)**
--   **[Active Logic](https://activelogic.com)**
+**Installing VS Code:**
 
-## Contributing
+1. Go to website: https://code.visualstudio.com/download
+2. Download the installer that corresponds to your OS (user installer file is recommended for Windows)
+3. Install
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+**Installing laravel herd:**
 
-## Code of Conduct
+1. Download Herd from here: https://herd.laravel.com/windows
+2. Run intsaller
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+**Installing MySQL (Community Server):**
 
-## Security Vulnerabilities
+1. Download MySQL Community Server from here: https://dev.mysql.com/downloads/mysql/
+2. You can choose any version you like (Recommended: 8.4.7 LTS). Recommended file type for Windows is MSI installer.
+3. do not have to sign up or Sign-up or Log-in, just download
+4. Set root password
+5. Start MySQL
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+**Installing MySQL workbench:**
 
-## License
+1. Download Workbench from here: https://dev.mysql.com/downloads/workbench/
+2. Recommended: version 8.0.44, msi file
+3. Open and connect to MySQL using the root account
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+**Installing Composer:**
+
+1. Open VS code terminal (or git terminal)
+2. Open folder and select the project
+3. input command "install composer" in terminal
+
+**Setting up the project with laravel herd**
+
+## Resources:
+
+**Design:** Figma  
+**Frontend:** HTML, CSS, JavaScript  
+**Backend:** PHP  
+**Framework:** laravel  
+**Database:** MySQL
+**Environment:** VS Code, laravel herd, mysql workbench  
+**Version Control:** Git(Github)  
+**Tools:** Composer
