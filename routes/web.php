@@ -28,13 +28,11 @@ Route::middleware('auth')->controller(AuthController::class)->group(function () 
 });
 
 
-Route::get('/blogEditor', function () {
-    return view('blogEditor');
-})->name('edit-blog');
 
 
-
+Route::get('/blogEditor', [PostController::class, 'create'])->name('posts.create');
 Route::get('/home', [PostController::class, 'select'])->name('home');
+Route::post('/blogEditor', [PostController::class, 'store'])->name('posts.store');
 
 // Route::get('/blogListing/{prefecture}/temples', [PostController::class, 'getTemples'])->name('filteredTempleOptions');
 

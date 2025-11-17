@@ -28,7 +28,7 @@
                                     Logout</a>
                 </form>
             </li>
-            <li><a href="{{ route('edit-blog') }}">Edit</a></li>
+            <li><a href="{{ route('posts.create') }}">Create</a></li>
             <li><a href="{{ route('home') }}">Home</a></li>
         </ul>
     </div>
