@@ -9,7 +9,12 @@ use App\Models\Status;
 use App\Models\Temple;
 use App\Models\Topic;
 use App\Models\User;
+use App\Http\Requests\PostRequest;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+
+
+use function PHPUnit\Framework\isEmpty;
 
 class PostController extends Controller
 {
@@ -77,4 +82,40 @@ class PostController extends Controller
         return view('blogListing.filter', compact('posts', 'prefectures', 'temples', 'status', 'topics', 'roles'));
 
     }
+
+    public function create()
+    {
+        $prefectures = Prefecture::all();
+        $temples = Temple::all();
+        $status = Status::all();
+        $topics = Topic::all();
+        $roles = Role::all();
+
+        return view('blogEditor', compact('prefectures', 'temples', 'status', 'topics', 'roles'));
+    }
+
+    public function store(PostRequest $postRequest)
+    {
+        //dd($postRequest->all());
+        $validated = $postRequest->validated();
+
+        $photoPath = null;
+        if ($postRequest->hasFile('image')) {
+            $photoPath = $postRequest->file('image')->store('posts', 'public');
+        }
+
+        Post::create([
+            'prefecture_id' => $validated['prefecture_id'],
+            'temple_id'     => $validated['temple_id'],
+            'status_id'     => $validated['status_id'],
+            'topic_id'      => $validated['topic_id'],
+            'user_id'       => auth()->id(),
+            //'photo_path'    => $photoPath,
+            'body'          => $validated['body'],
+            'title'         => $validated['title'],
+        ]);
+
+        return redirect()->route('home')->with('message', 'Blog post created successfully!');
+    }
+    
 }
