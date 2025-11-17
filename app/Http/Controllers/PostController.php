@@ -9,19 +9,15 @@ use App\Models\Status;
 use App\Models\Temple;
 use App\Models\Topic;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-
-use function PHPUnit\Framework\isEmpty;
 
 class PostController extends Controller
 {
-    //
-    // public function show(Post $post)
-    // {
-    //     $post = Post::all();
-    //     return view('blogListing', compact('post'));
-    // }
+    
+    public function show()
+    {
+        return view('blogListing.home');
+    }
 
     public function select()
     {
@@ -81,12 +77,4 @@ class PostController extends Controller
         return view('blogListing.filter', compact('posts', 'prefectures', 'temples', 'status', 'topics', 'roles'));
 
     }
-
-    // public function filterTemples(Request $request)
-    // {
-    //     $prefectures = Prefecture::all();
-    //     $temples = Temple::where('prefecture_id', $request)->get();
-    //     return view('blogListing.filteredTemples', compact('prefectures', 'temples'));
-    // 
-    
 }

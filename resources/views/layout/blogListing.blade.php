@@ -8,14 +8,14 @@
       <form method="post" class="filter-form" action="{{ route('post.filter') }}">
         @csrf
 
-        <select name="prefecture_id" class="filter-select">
+        <select name="prefecture_id" class="filter-select" id="selected_prefecture">
           <option value="">---Select Prefecture---</option>
           @foreach ($prefectures as $prefecture)
               <option value="{{ $prefecture->id }}">{{ $prefecture->name}}</option>
           @endforeach
         </select>
 
-        <select name="temple_id" class="filter-select">
+        <select name="temple_id" class="filter-select" id = "selected_temple">
             <option value="">---Select Temple---</option>
             @foreach ($temples as $temple)
                 <option value="{{ $temple->id }}">{{ $temple->name}}</option>
@@ -55,6 +55,8 @@
     <!-- Page content-->
     @yield('posts-content')
     @yield('welcome-content')
+
+
 
 
 
