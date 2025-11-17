@@ -95,13 +95,28 @@ class PostController extends Controller
         return view('blogEditor', compact('prefectures', 'temples', 'status', 'topics', 'roles'));
     }
 
+    public function store(PostRequest $postRequest)
+    {
+        //dd($postRequest->all());
+        $validated = $postRequest->validated();
 
+        $photoPath = null;
+        if ($postRequest->hasFile('image')) {
+            $photoPath = $postRequest->file('image')->store('posts', 'public');
+        }
 
-    // public function filterTemples(Request $request)
-    // {
-    //     $prefectures = Prefecture::all();
-    //     $temples = Temple::where('prefecture_id', $request)->get();
-    //     return view('blogListing.filteredTemples', compact('prefectures', 'temples'));
-    // 
+        Post::create([
+            'prefecture_id' => $validated['prefecture_id'],
+            'temple_id'     => $validated['temple_id'],
+            'status_id'     => $validated['status_id'],
+            'topic_id'      => $validated['topic_id'],
+            'user_id'       => auth()->id(),
+            //'photo_path'    => $photoPath,
+            'body'          => $validated['body'],
+            'title'         => $validated['title'],
+        ]);
+
+        return redirect()->route('home')->with('message', 'Blog post created successfully!');
+    }
     
 }
