@@ -44,7 +44,7 @@
                                                     Profile</a>
               </form>
             </li>
->>>>>>> 2e19611 (created profile page)
+>>>>>>>>> Temporary merge branch 2
             <li><a href="{{ route('home') }}">Home</a></li>
         </ul>
     </div>
