@@ -35,6 +35,7 @@
         <button type="submit" class="btn">Login</button><br />
     </form>
 
+
     @if ($errors->any())
         @foreach ($errors->all() as $error)
             <p class="errorMessage">{{ $error }}</p> 
