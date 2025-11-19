@@ -11,14 +11,18 @@
 <div class="login-form">
     <form action="{{ route('resetPassword') }}" method="post">
         @csrf
-
-        <input type="hidden" name="token" id="{{ $token }}">
-
         <div class="form-elements">
-            {{-- <label for="email">Email: </label><br /> --}}
             <input
             type="text"
             name="name"
+            id=""
+            placeholder="Username"
+            /><br />
+
+            {{-- <label for="email">Email: </label><br /> --}}
+            <input
+            type="email"
+            name="email"
             id=""
             placeholder="Email"
             /><br />
@@ -28,7 +32,7 @@
             type="password"
             name="password"
             id=""
-            placeholder="Password"
+            placeholder="New Password"
             /><br />
 
             {{-- <label for="password">Password: </label><br /> --}}
@@ -36,12 +40,23 @@
             type="password"
             name="password_confirmation"
             id=""
-            placeholder="Confirm Password"
+            placeholder="Confirm New Password"
             /><br />
 
         </div>
         <button class="btn">Reset</button><br />
     </form>
+
+    @if ($errors->any())
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li class="errorMessage">
+                    {{ $error }}
+                </li>
+            @endforeach
+        </ul>
+        
+    @endif
 </div>
 <p>
     Don't have an account?

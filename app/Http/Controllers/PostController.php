@@ -9,19 +9,21 @@ use App\Models\Status;
 use App\Models\Temple;
 use App\Models\Topic;
 use App\Models\User;
+use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 use function PHPUnit\Framework\isEmpty;
 
 class PostController extends Controller
 {
-    //
-    // public function show(Post $post)
-    // {
-    //     $post = Post::all();
-    //     return view('blogListing', compact('post'));
-    // }
+    
+    public function show()
+    {
+        return view('home');
+    }
 
     public function select()
     {
@@ -30,7 +32,7 @@ class PostController extends Controller
         $status = Status::all();
         $topics = Topic::all();
         $roles = Role::all();
-        return view('blogListing.home', compact('prefectures', 'temples', 'status', 'topics', 'roles'));
+        return view('home', compact('prefectures', 'temples', 'status', 'topics', 'roles'));
     }
 
     public function filter(Request $request)
@@ -78,15 +80,43 @@ class PostController extends Controller
         $topics = Topic::all();
         $roles = Role::all();
 
-        return view('blogListing.filter', compact('posts', 'prefectures', 'temples', 'status', 'topics', 'roles'));
+        return view('filteredPosts', compact('posts', 'prefectures', 'temples', 'status', 'topics', 'roles'));
 
     }
 
-    // public function filterTemples(Request $request)
-    // {
-    //     $prefectures = Prefecture::all();
-    //     $temples = Temple::where('prefecture_id', $request)->get();
-    //     return view('blogListing.filteredTemples', compact('prefectures', 'temples'));
-    // 
+    public function create()
+    {
+        $prefectures = Prefecture::all();
+        $temples = Temple::all();
+        $status = Status::all();
+        $topics = Topic::all();
+        $roles = Role::all();
+
+        return view('blogEditor', compact('prefectures', 'temples', 'status', 'topics', 'roles'));
+    }
+
+    public function store(PostRequest $postRequest)
+    {
+        //dd($postRequest->all());
+        $validated = $postRequest->validated();
+
+        $photoPath = null;
+        if ($postRequest->hasFile('image')) {
+            $photoPath = $postRequest->file('image')->store('posts', 'public');
+        }
+
+        Post::create([
+            'prefecture_id' => $validated['prefecture_id'],
+            'temple_id'     => $validated['temple_id'],
+            'status_id'     => $validated['status_id'],
+            'topic_id'      => $validated['topic_id'],
+            'user_id'       => Auth::id(),
+            //'photo_path'    => $photoPath,
+            'body'          => $validated['body'],
+            'title'         => $validated['title'],
+        ]);
+
+        return redirect()->route('home')->with('message', 'Blog post created successfully!');
+    }
     
 }

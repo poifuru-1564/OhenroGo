@@ -4,13 +4,19 @@
 
 <h3>Login</h3>
 
+@if(session()->has('message'))
+    <div class="message">
+        {{ session('message') }}
+    </div>
+@endif
+
 <div class="login-form">
     <form method="POST" action="{{ route('login') }}">
         @csrf
         <div class="form-elements">
             {{-- <label for="email">Email </label><br /> --}}
             <input
-            type="text"
+            type="email"
             name="email"
             id=""
             placeholder="Email"
@@ -31,13 +37,9 @@
 
 
     @if ($errors->any())
-    <ul>
         @foreach ($errors->all() as $error)
-            <li class="errorMessage">
-                {{ $error }}
-            </li>
-        @endforeach
-    </ul>
+            <p class="errorMessage">{{ $error }}</p> 
+        @endforeach      
     @endif
 
 </div>
@@ -45,7 +47,7 @@
 Don't have an account?
 <a href="{{ route('showRegister') }}">Sign Up</a>
 </p>
-<p>Forgot password? <a href="{{ route('showRequestReset') }}">Click here</a></p>
+<p>Forgot password? <a href="{{ route('resetPassword') }}">Click here</a></p>
 
 
 @endsection

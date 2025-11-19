@@ -3,39 +3,39 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\PrefectureController;
-use App\Models\Post;
+use App\Http\Controllers\UserController;
 
-// routes only for logged out users
+// for logged out users
 Route::middleware('guest')->group(function () { 
     Route::get('/register', [AuthController::class, 'showRegister'])->name('showRegister');
     Route::post('/register', [AuthController::class,'register'])->name('register');
 
-    Route::get('/', [AuthController::class, 'showLogin'])->name('showLogin');
-    Route::post('/', [AuthController::class, 'login'])->name('login');
+    Route::get('/login', [AuthController::class, 'showLogin'])->name('showLogin');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
 
-    Route::get('/requestReset', [AuthController::class, 'showRequestReset'])->name('showRequestReset');
-    Route::post('/requestReset', [AuthController::class, 'requestReset'])->name('requestReset');
-
-    Route::get('/resetPassword/{token}', [AuthController::class, 'showResetPassword'])->name('showResetPassword');
+    Route::get('/resetPassword', [AuthController::class, 'showResetPassword'])->name('showResetPassword');
     Route::post('/resetPassword',[AuthController::class, 'resetPassword'])->name('resetPassword');
-   
+
+    Route::get('/', function (){ return view('welcome'); })->name('welcome');
 });
 
-// routes only for logged in users
+
+
+// for logged in users
 Route::middleware('auth')->controller(AuthController::class)->group(function () { 
+  Route::get('/home', [PostController::class, 'select'])->name('home');
   Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+  Route::get('/myProfile', [UserController::class, 'myProfile'])->name('myProfile');
+  Route::post('/myProfile/update', [UserController::class, 'distance'])->name('distance');
+  Route::get('/myProfile/edit', [UserController::class, 'showEdit'])->name('showEdit');
+  Route::post('/myProfile/edit', [UserController::class, 'edit'])->name('edit');
+  Route::post('/blogListing/filteredPosts', [PostController::class, 'filter'])->name('post.filter');
+
+  Route::get('/blogListing/profile/{user}', [UserController::class, 'profile'])->name('profile');
+
+  Route::get('/blogEditor', [PostController::class, 'create'])->name('posts.create');
+  Route::post('/blogEditor', [PostController::class, 'store'])->name('posts.store');
+
+
 });
 
-
-Route::get('/blogEditor', function () {
-    return view('blogEditor');
-})->name('edit-blog');
-
-
-
-Route::get('/home', [PostController::class, 'select'])->name('home');
-
-// Route::get('/blogListing/{prefecture}/temples', [PostController::class, 'getTemples'])->name('filteredTempleOptions');
-
-Route::post('/blogListing/filter', [PostController::class, 'filter'])->name('post.filter');

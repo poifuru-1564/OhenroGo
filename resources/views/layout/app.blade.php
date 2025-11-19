@@ -12,6 +12,9 @@
     <!-- Favicon-->
     <link rel="stylesheet" href="{{ asset('css/blogListing.css') }}"/>
 
+    {{-- fonts --}}
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+  
   </head>
 
   <body>
@@ -20,7 +23,7 @@
         <ul>
             <li class="nav-icon">Ohenro GO</li>
             <li>
-                <form method='POST' action="{{ route('logout') }}">
+                <form method='POST' action="{{ route('logout')}}">
                     @csrf
                     <a :href="route('logout')"
                                 onclick="event.preventDefault();
@@ -28,18 +31,30 @@
                                     Logout</a>
                 </form>
             </li>
-            <li><a href="{{ route('edit-blog') }}">Edit</a></li>
+            <li><a href="{{ route('posts.create') }}">Create</a></li>
+            <li>
+              <form action="{{ route('myProfile')}}" method="GET">
+                @csrf
+                <a :href="route('myProfile')" onclick="event.preventDefault();
+                                                    this.closest('form').submit()">
+                                                    Profile</a>
+              </form>
+            </li>
             <li><a href="{{ route('home') }}">Home</a></li>
         </ul>
     </div>
     
     
     <!-- Page content-->
-    @yield('content')
+    <div class="main-container">
+      @yield('content')
+    </div>
 
     <!-- Footer-->
     <div class="footer">
       <p>Ohenro GO</p>
     </div>
+
+    <script src="{{ asset('js/blogListing.js') }}"></script>
   </body>
 </html>

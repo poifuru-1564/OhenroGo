@@ -1,81 +1,64 @@
 @extends('layout.app')
-
 @section('content')
 
+<div class="content">
+    <div class="filter-container">
+        <!-- Categories-->
+        <div class="filter-categories">
+            <form action="{{ route('posts.store') }}" method="POST" enctype="multipart/form-data">
+                <div class="blog-card">
+                    @csrf
+                    <select name="prefecture_id" class="filter-select">
+                    <option value="">---1. Select Prefecture---</option>
+                    @foreach ($prefectures as $prefecture)
+                        <option value="{{ $prefecture->id }}">{{ $prefecture->name}}</option>
+                    @endforeach
+                    </select>
 
-    <h1 class="header1">Blog Editor</h1>
-    <div class="blog-listing-content">
-    <div class="blog-card">
-        <div class="blog-card-header">
-            
-        </div>
-            
-        
-        <div class="blog-body">
-            <div class="editor-categories">
-                <button class="category-toggle-button" type="button" >Prefectures</button>
-                <button class="category-toggle-button" type="button" >Location</button>
-                <button class="category-toggle-button" type="button" >Status</button>
-                <button class="category-toggle-button" type="button" >Topic</button>
-                <button class="category-toggle-button" type="button" >User Role</button>
-            </div>
-            <ul id="category-list"></ul>
-            <form action="title/content" method="POST">
-        @csrf
-        <div>
-            <label for="title">Title:</label>
-            <input type="text" id="title" name="title" placeholder="dd/mm" required>
-        </div>
-        <div>
-            <label for="content">Content:</label>
-            <textarea id="content" name="content" placeholder="text here" rows="10" required></textarea>
-        </div>
-        
-            <a href="#!"><img class="card-img-top" src="https://dummyimage.com/700x350/dee2e6/6c757d.jpg" alt="..." /></a>
-                                
-        </div>
-        
-    </div>
-    <form action="addImage" method="POST" enctype="multipart/form-data">
-        @csrf
-        <div>
-            <label for="image">Upload Image:</label>
-            <input type="file" id="image" name="image" accept="image/*" required>
-        </div>
-        <button class="add-image-button" type="submit">Click here to add Image</button>
-    </form>
-</div>
-</div>
-    <div class="likes">
-    <form action="/submit-blog" method="POST">
-        @csrf
-        <button class="discard-button" type="discard">Discard</button>
-        <button class="post-button" type="post">Post</button>
-    </form>
-    </div>
+                    <select name="temple_id" class="filter-select">
+                        <option value="">---2. Select Temple---</option>
+                        @foreach ($temples as $temple)
+                            <option value="{{ $temple->id }}">{{ $temple->name}}</option>
+                        @endforeach
+                    </select>
+                    <select name="status_id" class="filter-select">
+                        <option value="">---3. Select Status---</option>
+                        @foreach ($status as $status)
+                            <option value="{{ $status->id }}">{{ $status->name}}</option>
+                        @endforeach
+                    </select>
 
-<<<<<<< HEAD
+                    <select name="topic_id" class="filter-select">
+                    <option value="">---4. Select Topic---</option>
+                    @foreach ($topics as $topic)
+                        <option value="{{ $topic->id }}">{{ $topic->name}}</option>
+                    @endforeach
+                    </select>
+                    <select class="filter-select">
+                    <option value="">current status: {{ auth()->user()->role->name }}</option>
+                        
+                    </select>
+                    
+                    <div class="blog-body">
+                        <div class="blog-title">
+                            <h2>Title</h2>
+                            <input type="text" name="title" placeholder="title(dd/mm/yyyy)" value="{{ old('title') }}">
+                            <p class="title__error" style="color:red">{{ $errors->first('title') }}</p>
+                        </div>
+                        <div class="image">
+                            <h2>Image</h2>
+                            <input type="file" name="image">
+                        </div>
+                        <div class="blog-text">
+                            <h2>Body</h2>
+                            <textarea name="body" placeholder="please write your blog here">{{ old('body') }}</textarea>
+                            <p class="body__error" style="color:red">{{ $errors->first('body') }}</p>
+                        </div>
+                    </div>
+                    <input type="submit" value="store"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection
-=======
-</body>
-<script>
-document.querySelectorAll('.category-toggle-button').forEach(btn => {
-  btn.addEventListener('click', async () => {
-    const category = btn.dataset.category; // 'prefectures' など
-    const res = await fetch(`/api/editor/categories/${category}`);
-    if (!res.ok) { alert('取得に失敗しました'); return; }
-    const items = await res.json();
-
-    const ul = document.getElementById('category-list');
-    ul.innerHTML = '';
-    items.forEach(row => {
-      const li = document.createElement('li');
-      li.textContent = `${row.id}: ${row.name}`;
-      ul.appendChild(li);
-    });
-  });
-});
-</script>
-
-</html>
->>>>>>> f9f9c64 (ブログエディタにカテゴリリストを追加し、APIエンドポイントを設定)
