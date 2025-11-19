@@ -22,7 +22,7 @@ The target audience is foreign pilgrims. The application benefits English-speaki
 
 https://drive.google.com/file/d/1Ii0g0MHEgcG1RKQVOaHIhHK3JjyYO3Uw/view?usp=sharing
 
-## wireframe(Figma)
+## Initial Design (Figma)
 
 https://www.figma.com/design/YPTE7VIw6KqzvjQmYUsQyL/Ohenro-GO-?node-id=131-1689&t=pMLZ63SqllwnajAl-1
 
@@ -45,7 +45,6 @@ https://www.figma.com/design/YPTE7VIw6KqzvjQmYUsQyL/Ohenro-GO-?node-id=131-1689&
 -   **Create account feature:** Users can create account
 -   **Log-in feature:** Users can log-in their account
 -   **Log-out feature:** Users can log-out their account
--   **Delete account feature:** Users can delete their account
 
 ## Getting Started
 
@@ -102,6 +101,8 @@ Those instructions are for Windows
 3. input command "install composer" in terminal
 
 **Setting up the project with laravel herd**
+
+After setting site in laravel, open the link with Google Chrome.
 
 ## Resources:
 
