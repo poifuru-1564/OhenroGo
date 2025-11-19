@@ -15,6 +15,10 @@ return new class extends Migration
             $table->timestamp('deleted_at')->nullable();
             $table->foreignId('role_id')->constrained();
             $table->decimal('distance', places: 2)->default(0)->nullable();
+            $table->text('bio')->nullable();
+            $table->text('location')->nullable();
+            $table->date('startDate')->nullable();
+            $table->date('completedDate')->nullable();
         });
     }
 

@@ -11,9 +11,6 @@
 <div class="login-form">
     <form action="{{ route('resetPassword') }}" method="post">
         @csrf
-
-        {{-- <input type="hidden" name="token" id="{{ $token }}"> --}}
-
         <div class="form-elements">
             <input
             type="text"
@@ -24,8 +21,8 @@
 
             {{-- <label for="email">Email: </label><br /> --}}
             <input
-            type="text"
-            name="name"
+            type="email"
+            name="email"
             id=""
             placeholder="Email"
             /><br />

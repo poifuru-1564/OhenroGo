@@ -3,17 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
-use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
-use Pest\Mutate\Mutators\Visibility\FunctionPublicToProtected;
-use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Redis;
+
 
 class AuthController extends Controller
 {
@@ -27,11 +21,6 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function showRequestReset()
-    {
-        return view('auth.requestReset');
-    }
-
     public function showResetPassword()
     {
         return view('auth.resetPassword');
@@ -39,56 +28,44 @@ class AuthController extends Controller
 
     public function register(Request $request)
     {
-        $requestUser = $request->validate([
+        $validated = $request->validate([
             'name' => ['required', 'max:25', 'unique:users,name'],
             'email' => ['required', 'email', 'unique:users,email'],
             'password' => ['required', 'min:8'],
             'role_id' =>['required']
-        ],
-        [
-            'name.required' => 'Username is required.',
-            'name.unique' => 'Entered username is already in use. Choose a different username.',
-            'name.max' => 'Username should be under 25 characters.',
-
-            'email.required' => 'Email is required to register.',
-            'email.email' => 'Enter a valid email address',
-            'email.unique' => 'Entered email is already in use.',
-
-            'password.required' => 'Password is required.',
-            'password.min' => 'Password should be at least 8 characters',
-            
-            'role_id.required' => 'Select your role.',
         ]);
 
-        $user = User::create($requestUser);
-
-        Auth::login($user);
-
-        return redirect()->route('home');
+        $user = User::create($validated);
+        
+        if ($user) // successfully created
+        {
+            Auth::login($user);
+            return redirect()->route('home');
+        }
+        else
+        {
+            return back();
+        }
     }
 
 
     public function login(Request $request)
     {
-        $requestUser = $request->validate([
+        $validated = $request->validate([
             'email' => ['required', 'email'],
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($requestUser)) 
+        if (Auth::attempt($validated)) 
         {
             $request->session()->regenerate(); //regenerate session id
             $user = Auth::user();
             return redirect()->route('home')->with('user', $user);
         }
-
-        return back()->withErrors([
-            'email.required' => 'Email is required.',
-            'email.email' => 'Enter a valid email address',
-
-            'password.required' => 'Password is required.',
-        ]);
-        
+        else
+        {
+            return back()->withErrors('These credentials do not match our records.');
+        }        
     }
 
     public function logout(Request $request)
@@ -101,79 +78,37 @@ class AuthController extends Controller
 
         return redirect()->route('showLogin');
     }
-
-    public function requestReset(Request $request)
-    {
-        $request->validate(['email' => ['required', 'email']]);
-    
-        $status = Password::sendResetLink(
-            $request->only('email')
-        );
-    
-        return $status === Password::ResetLinkSent // check if link was sent successfully
-            ? back()->with(['status' => __($status)]) //sends status (success) message to the session -> show inside requestReset.blade
-            : back()->withErrors(['email' => __($status)]); // otherwise show an error
-
-    }
     
     
-    function ResetPassword(Request $request) {
-        $request->validate([
-            'name' => ['required'],
+    public function ResetPassword(Request $request) {
+        $validated = $request->validate([
+            'name' => ['required', 'max:25'],
             'email' => ['required', 'email'],
             'password' => ['required', 'min:8', 'confirmed'],
         ]);
-    
-        $status = Password::reset(
-            $request->only('email', 'password', 'password_confirmation', 'token'),
-            function (User $user, string $password) {
-                $user->forceFill([
-                    'password' => Hash::make($password)
-                ])->setRememberToken(Str::random(60));
-    
-                $user->save();
-    
-                event(new PasswordReset($user));  //send email to notify that password was changed
-            }
-        );
-    
-        return $status === Password::PasswordReset //if password was successfully reset
-            ? redirect()->route('login')->with('status', __($status))
-            : back()->withErrors(['email' => [__($status)]]);
 
-        return back()->withErrors([
-            'name.required' => 'Username is required.',
-            'name.max' => 'Username should be under 25 characters.',
+        $userEmail = User::where('name', $validated['name'])->value('email');
+        if ($userEmail != $validated['email'])
+        {
+            return back()->withErrors(['email' => 'Email does not match your username']);
+        }
 
-            'email.required' => 'Email is required to reset password.',
-            'email.email' => 'Enter a valid email address',
+        $user_id = User::where('name', $validated['name'])->value('id');
+        $user = User::find($user_id);
 
-            'password.required' => 'Password is required.',
-            'password.min' => 'Password should be at least 8 characters',
-        ]);
-    }
+        $user->forceFill([
+            'password' => Hash::make($validated['password'])
+        ])->setRememberToken(Str::random(60));
 
-    // function ResetPassword(Request $request)
-    // {
-    //     $request->validate([
-    //         'name' => ['required'],
-    //         'email' => ['required', 'email'],
-    //         'password' => ['required', 'min:8', 'confirmed'],
-    //     ]);
-
+        $status = $user->save();
         
-
-    //     return back()->withErrors([
-    //         'name.required' => 'Username is required.',
-    //         'name.max' => 'Username should be under 25 characters.',
-
-    //         'email.required' => 'Email is required to reset password.',
-    //         'email.email' => 'Enter a valid email address',
-
-    //         'password.required' => 'Password is required.',
-    //         'password.min' => 'Password should be at least 8 characters',
-    //     ]);
-
-    // }
-    
+        if ($status)  // if successful
+        {
+            return redirect()->route('login')->with('message', 'Password Updated Successfully.');
+        }
+        else
+        {
+            return back();
+        }
+    }
 }

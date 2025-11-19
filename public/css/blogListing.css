@@ -127,6 +127,20 @@ select:hover {
 
 /* main content filtered page*/
 
+.userProfilebtn {
+    font: inherit;
+    background-color: rgba(255, 255, 255, 0);
+    color: #013a20;
+    border: none;
+    border-radius: 0.4rem;
+    padding: 0.4rem 0.8rem;
+}
+
+.userProfilebtn:hover {
+    background-color: #bab098;
+    cursor: pointer;
+}
+
 .post-container {
     text-align: center;
     align-items: center;
@@ -150,7 +164,6 @@ select:hover {
     padding: 0 10px 25px 10px;
     box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.1), 0 6px 10px 0 rgba(0, 0, 0, 0.1);
     border-radius: 5px;
-    border: 0.5px solid lightgrey;
 }
 
 .blog-listing-content {
@@ -172,6 +185,7 @@ select:hover {
     height: auto;
     border-radius: 5px;
     text-align: center;
+    border: lightgrey solid 0.5pt;
 }
 
 .blog-card-header {
@@ -185,10 +199,12 @@ select:hover {
 }
 
 .blog-text {
-    border: solid rgba(128, 128, 128, 0.5);
+    border: solid lightgrey 0.5pt;
     margin-bottom: 20px;
     padding: 10px;
     border-radius: 0.5rem;
+    font-size: smaller;
+    text-align: right;
 }
 
 .post-category-container {
@@ -263,8 +279,9 @@ div.profile-outer-container > div {
     text-align: center;
     padding: 15px;
     border-radius: 5px;
-    border: solid #fff1cf 12pt;
-    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1), 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+    border: solid #fff1cf 12px;
+    box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.1), 0 6px 10px 0 rgba(0, 0, 0, 0.1);
+    outline: 0.5px solid lightgrey;
 }
 
 .prof-post-card {
@@ -311,7 +328,7 @@ div.profile-outer-container > div {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 120px;
+    margin-bottom: 170px;
 }
 .no-post-body {
     background-color: #faf9f6;
@@ -327,13 +344,13 @@ div.profile-outer-container > div {
 }
 
 .prof-icon {
-    /* border: solid #123524 0.5pt; */
     width: 40px;
     height: 40px;
 }
 
 .prof-elements {
     padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
 }
 
 .prof-dist {
@@ -341,14 +358,75 @@ div.profile-outer-container > div {
     padding: 10px;
     margin-top: 15px;
     font-size: 0.9rem;
+    margin-bottom: 15px;
 }
 
-.dist-form {
+.dist-update {
+    margin-top: 5px;
+    font-size: 0.9em;
+}
+
+.dist-input {
     width: 50px;
     appearance: textfield;
+    margin: 8px;
 }
 
-.dist-form::-webkit-inner-spin-button {
+.dist-input::-webkit-inner-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+.profbtn {
+    font: inherit;
+    border: solid 0.5pt lightgrey;
+    font-size: 0.8em;
+    border-radius: 0.4rem;
+    padding: 0.2rem 0.4rem;
+}
+
+.profbtn:hover {
+    background-color: #12352480;
+    cursor: pointer;
+    color: #faf9f6;
+}
+
+.templeTracker p {
+    margin-bottom: 5px;
+}
+
+/* Edit Profile */
+
+.edit-container {
+    padding-top: 150px;
+    height: 75vh;
+}
+
+.edit-form {
+    padding: 20px;
+    background-color: #fff1cf;
+    border: lightgrey 0.5pt solid;
+    border-radius: 0.5rem;
+    width: fit-content;
+    margin: auto;
+    box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.1), 0 4px 8px 0 rgba(0, 0, 0, 0.1);
+}
+
+.edit-form-header {
+    text-align: center;
+    text-decoration: underline;
+}
+
+.edit-form-elements {
+    margin-top: 15px;
+}
+
+.edit-form-elements input {
+    margin-top: 10px;
+    padding: 0.5em;
+}
+
+.edit-form-elements textarea {
+    margin-top: 10px;
+    padding: 0.5em;
 }

@@ -1,17 +1,15 @@
 * {
     margin: 0;
     padding: 0;
-    font-family: "Roboto", sans-serif;
 }
 
 body {
-    /* background-image: url(img/IMG_5193.HEIC);
-    background-size: cover; */
     background-color: #e3e3e3;
     height: 100vh;
     text-align: center;
     display: flex;
     justify-content: center;
+    font-family: "Roboto", sans-serif;
 }
 
 .btn {
@@ -49,11 +47,12 @@ body {
 
 .left-box h1 {
     text-align: left;
-    margin-top: 20px;
-    padding-left: 20px;
+    margin-top: 35px;
+    padding-left: 25px;
     font-family: "Ubuntu", sans-serif;
     font-style: italic;
-    font-weight: 300;
+    font-weight: 700;
+    color: black;
 }
 
 p {
@@ -99,6 +98,12 @@ p {
 .form-elements label {
     font-size: smaller;
     color: rgb(118, 118, 118);
+}
+
+.message {
+    color: blue;
+    font-size: small;
+    margin-top: 5px;
 }
 
 .errorMessage {

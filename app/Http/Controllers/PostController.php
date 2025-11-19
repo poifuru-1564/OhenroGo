@@ -12,7 +12,8 @@ use App\Models\User;
 use App\Http\Requests\PostRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 
 use function PHPUnit\Framework\isEmpty;
 
@@ -21,7 +22,7 @@ class PostController extends Controller
     
     public function show()
     {
-        return view('blogListing.home');
+        return view('home');
     }
 
     public function select()
@@ -31,7 +32,7 @@ class PostController extends Controller
         $status = Status::all();
         $topics = Topic::all();
         $roles = Role::all();
-        return view('blogListing.home', compact('prefectures', 'temples', 'status', 'topics', 'roles'));
+        return view('home', compact('prefectures', 'temples', 'status', 'topics', 'roles'));
     }
 
     public function filter(Request $request)
@@ -79,7 +80,7 @@ class PostController extends Controller
         $topics = Topic::all();
         $roles = Role::all();
 
-        return view('blogListing.filter', compact('posts', 'prefectures', 'temples', 'status', 'topics', 'roles'));
+        return view('filteredPosts', compact('posts', 'prefectures', 'temples', 'status', 'topics', 'roles'));
 
     }
 
@@ -109,7 +110,7 @@ class PostController extends Controller
             'temple_id'     => $validated['temple_id'],
             'status_id'     => $validated['status_id'],
             'topic_id'      => $validated['topic_id'],
-            'user_id'       => auth()->id(),
+            'user_id'       => Auth::id(),
             //'photo_path'    => $photoPath,
             'body'          => $validated['body'],
             'title'         => $validated['title'],

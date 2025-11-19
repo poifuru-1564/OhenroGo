@@ -13,8 +13,6 @@
     <link rel="stylesheet" href="{{ asset('css/blogListing.css') }}"/>
 
     {{-- fonts --}}
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
   
   </head>
@@ -33,18 +31,15 @@
                                     Logout</a>
                 </form>
             </li>
-<<<<<<< HEAD
             <li><a href="{{ route('posts.create') }}">Create</a></li>
-=======
             <li>
-              <form action="{{ route('profile')}}" method="GET">
+              <form action="{{ route('myProfile')}}" method="GET">
                 @csrf
-                <a :href="route('profile')" onclick="event.preventDefault();
+                <a :href="route('myProfile')" onclick="event.preventDefault();
                                                     this.closest('form').submit()">
                                                     Profile</a>
               </form>
             </li>
->>>>>>>>> Temporary merge branch 2
             <li><a href="{{ route('home') }}">Home</a></li>
         </ul>
     </div>
