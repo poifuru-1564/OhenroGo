@@ -74,20 +74,18 @@ class AuthController extends Controller
             'password' => ['required'],
         ]);
 
-        if (Auth::attempt($requestUser)) 
+        if (! Auth::attempt($requestUser)) 
         {
-            $request->session()->regenerate(); //regenerate session id
-            return redirect()->route('home');
+            return back()->withErrors([
+                'auth' => 'Invalid email or password.',
+
+            ])->onlyInput('email');
         }
 
-        return back()->withErrors([
-            'email.required' => 'Email is required.',
-            'email.email' => 'Enter a valid email address',
-
-            'password.required' => 'Password is required.',
-        ]);
-        
+        $request->session()->regenerate();
+        return redirect()->route('home');
     }
+
 
     public function logout(Request $request)
     {

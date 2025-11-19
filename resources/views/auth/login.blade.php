@@ -29,15 +29,15 @@
         <button type="submit" class="btn">Login</button><br />
     </form>
 
+
     @if ($errors->any())
-        <ul>
-            @foreach ($errors->all() as $error)
-                <li class="errorMessage">
-                    {{ $error }}
-                </li>
-            @endforeach
-        </ul>
-        
+    <ul>
+        @foreach ($errors->all() as $error)
+            <li class="errorMessage">
+                {{ $error }}
+            </li>
+        @endforeach
+    </ul>
     @endif
 
 </div>
