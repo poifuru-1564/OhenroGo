@@ -18,9 +18,15 @@ There are some services for Ohenro; “Henro no Akari + Plus” and “Dojyo-nin
 **Target Audience**  
 The target audience is foreign pilgrims. The application benefits English-speaking pilgrims with the pilgrims’ community that aims to share information of Ohenro. The structured categorization of blogs allow user to access the information easily.
 
-## ER diagram(draw.io)
+## ER Diagram (draw.io)
+
+### Initial Version
 
 https://drive.google.com/file/d/1Ii0g0MHEgcG1RKQVOaHIhHK3JjyYO3Uw/view?usp=sharing
+
+### Latest Version
+
+https://drive.google.com/file/d/1UqKImyVAX0d4i_Ma1GkB55HYdo1nt3Hl/view?usp=sharing
 
 ## Initial Design (Figma)
 
@@ -46,6 +52,20 @@ https://www.figma.com/design/YPTE7VIw6KqzvjQmYUsQyL/Ohenro-GO-?node-id=131-1689&
 -   **Log-in feature:** Users can log-in their account
 -   **Log-out feature:** Users can log-out their account
 
+## Cautions and Areas for Improvement
+
+**Security Issue: Login Function**  
+There is sign-up function that allows users to create accounts. However, there is no email verification process, so we cannot confirm whether the provided email address actually exists.
+Additionally, when resetting a password, anyone who knows a matching username and email address can reset the user's password. This could be a potential security risk.
+
+**CSS Structure**  
+The CSS is not organized in an object-oriented way. It can be improved by using a more structured approach, such as separating componenets or organizing styles by function.
+This would become especially helpful as the number of files increases.
+
+**Database Structure**  
+There are many null records in the database. This may unnecessarily increase the database size.
+To reduce the number of null entries, dividing user records into category-specific tables or creating separate tables for each user role could be a possible improvement.
+
 ## Getting Started
 
 ### Prerequisites
@@ -56,6 +76,8 @@ https://www.figma.com/design/YPTE7VIw6KqzvjQmYUsQyL/Ohenro-GO-?node-id=131-1689&
 4. mysql
 5. mysql workbench
 6. Composer
+7. Google Chrome (required for running the local development URL)
+8. Account Required: Github account
 
 ### Instruction
 
@@ -63,46 +85,69 @@ Those instructions are for Windows
 
 **Installing Git:**
 
-1. Go to website: https://git-scm.com/install/
-2. Download the installer that corresponds to your OS.
-3. Run the installer.
-4. Default settings should work for this project.
-5. (Optional) To confirm that Git was installed successfully, run the following command in terminal: git --version
+1. Go to: https://git-scm.com/install/
+2. Download the installer that corresponds to your OS
+3. Run the installer
+4. Default settings should work for this project
+5. (Optional) To confirm that Git was installed successfully, run the command: git --version
 
 **Installing VS Code:**
 
-1. Go to website: https://code.visualstudio.com/download
+1. Go to: https://code.visualstudio.com/download
 2. Download the installer that corresponds to your OS (user installer file is recommended for Windows)
-3. Install
+3. Run the installer
 
-**Installing laravel herd:**
+**Installing Laravel Herd:**
 
-1. Download Herd from here: https://herd.laravel.com/windows
-2. Run intsaller
+1. Download the Herd installer from: https://herd.laravel.com/windows
+2. Run the installer
 
 **Installing MySQL (Community Server):**
 
-1. Download MySQL Community Server from here: https://dev.mysql.com/downloads/mysql/
-2. You can choose any version you like (Recommended: 8.4.7 LTS). Recommended file type for Windows is MSI installer.
-3. do not have to sign up or Sign-up or Log-in, just download
-4. Set root password
+1. Download MySQL Community Server from: https://dev.mysql.com/downloads/mysql/
+2. You can choose any version you like (recommended version 8.4.7 LTS, recommended file type for Windows is MSI Installer)
+3. You do not have to sign up or log in, just download
+4. Set the root password
 5. Start MySQL
 
-**Installing MySQL workbench:**
+**Installing MySQL Workbench:**
 
-1. Download Workbench from here: https://dev.mysql.com/downloads/workbench/
-2. Recommended: version 8.0.44, msi file
-3. Open and connect to MySQL using the root account
+1. Download MySQL Workbench from: https://dev.mysql.com/downloads/workbench/
+2. Recommended: version 8.0.44, MSI installer
+3. Open Workbench and connect to MySQL using the root account
 
 **Installing Composer:**
 
-1. Open VS code terminal (or git terminal)
-2. Open folder and select the project
-3. input command "install composer" in terminal
+1. Go to: https://getcomposer.org/download/
+2. Download the installer
+3. Run the installer
 
-**Setting up the project with laravel herd**
+**Installing Google Chrome**
 
-After setting site in laravel, open the link with Google Chrome.
+1. Go to: https://www.google.com/chrome/
+2. Download the installer
+3. Run the installer
+
+**Creating a GitHub Account**
+
+1. If you do not have a GitHub account, go to: https://github.com/
+2. Sign up
+
+**Setting up the project with Laravel Herd**
+
+1. Go to the GitHub OhenroGo! repository: https://github.com/poifuru-1564/OhenroGo
+2. Click **Fork** to copy the project to your Github account
+3. Open a terminal and navigate to the directory where you want to place the project
+4. Clone your forked repository: **"git clone [URL of your forked repository]"**
+5. In the terminal, move into the project folder
+6. Install this project's Composer dependencies: **"composer install"**
+7. Create your own '.env' file based on the '.env.example' file: **"copy .env.example .env"**
+8. Generate the application key: **"php artisan key:generate"**
+9. Start Laravel Herd
+10. Open Laravel Herd and go to the **Sites** section
+11. Click **Add** and select the folder of the cloned OhenroGo! project
+12. Herd will automatically generate a local development URL (example: http://ohenrogo.test)
+13. Please make sure to open the link in **Google Chrome**
 
 ## Resources:
 
@@ -110,7 +155,9 @@ After setting site in laravel, open the link with Google Chrome.
 **Frontend:** HTML, CSS, JavaScript  
 **Backend:** PHP  
 **Framework:** laravel  
-**Database:** MySQL
+**Database:** MySQL  
 **Environment:** VS Code, laravel herd, mysql workbench  
-**Version Control:** Git(Github)  
-**Tools:** Composer
+**Version Control:** Git(GitHub)  
+**Tools:** Composer  
+**Additional Resources:** Laravel documentation: https://laravel.com/docs/12.x/installation,
+ChatGPT
