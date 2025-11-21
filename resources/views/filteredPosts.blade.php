@@ -2,20 +2,16 @@
 @section('posts-content')
 
 <style>
-  .userProfilebtn {
-    font: inherit;
-    background-color: rgba(255, 255, 255, 0);
-    color: #013a20;
-    border: none;
-    border-radius: 0.4rem;
-    padding: 0.4rem 0.8rem;
-}
 
-.userProfilebtn:hover {
-    background-color: rgba(255, 255, 255, 0.781);
-    border: solid lightgrey 0.5pt;
-    cursor: pointer;
-}
+  .userProfilebtn-icon{
+    max-height: 100%;
+    max-width: 100%;
+    padding-right: 10px;
+  }
+
+  .userProfilebtn{
+    height: 40px;
+  }
 </style>
 
 <div class="post-container">
@@ -26,7 +22,19 @@
         <div class="blog-card">
           <div class="blog-card-header">
             <div class="userID">
-              <a href="{{ route('profile', $post->user) }}"><button class="userProfilebtn">{{ $post->user->name }}</button></a>
+              <a href="{{ route('profile', $post->user) }}">
+                <button class="userProfilebtn">
+                  @if ($post->user->role->name == 'Pilgrims')
+                    <img src="{{ asset('img/pilgrim_icon.png') }}" alt="" class="userProfilebtn-icon">
+                  @elseif ($post->user->role->name == 'Locals')
+                    <img src="{{ asset('img/local_icon.png') }}" alt="" class="userProfilebtn-icon">
+                  @else
+                    <img src="{{ asset('img/hotel_icon.png') }}" alt="" class="userProfilebtn-icon">
+                  @endif
+                  
+                  {{ $post->user->name }}
+                </button>
+              </a>
             </div>
 
             <div class="date">{{ $post->created_at }}</div>

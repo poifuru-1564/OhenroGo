@@ -28,12 +28,7 @@
           @endif
 
           <div class="prof-dist prof-elements">
-            @if ($user->distance == null)
-              <p >Total Distance: <br><span>No Record</span></p>
-            @else
               <p >Total Distance Traveled: <br><span>{{ $user->distance }}</span> km</p>
-            @endif
-
           </div>
 
           @if ($user->startDate != null)
@@ -58,6 +53,16 @@
           <p>📍 {{ $user->location}} </p>
         </div>
         @endif
+        
+        @if ($user->bio != null)
+            <div class="prof-dist prof-elements">
+                <div class="bio">
+                    <p>{{ $user->bio }}</p>
+                </div>
+            </div>
+        @endif
+        
+
     </div>
   </div>
 

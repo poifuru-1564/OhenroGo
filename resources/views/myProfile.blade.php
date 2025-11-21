@@ -28,11 +28,7 @@
           @endif
 
           <div class="prof-dist prof-elements">
-            @if ($user->distance == null)
-              <p >Total Distance: <br><span>No Record</span></p>
-            @else
               <p >Total Distance: <span>{{ $user->distance }}</span> km</p>
-            @endif
 
             <form action="{{ route('distance') }}" method="POST" class="prof-elements dist-update">
               @csrf
@@ -95,7 +91,7 @@
                   <div style="margin-left: 2.5rem">{{ $post->created_at }}</div>
                   <div style="margin-right: 1.5rem">
                     <button class="btn">Edit</button>
-                    <button class="btn">Delete</button>
+                    {{-- <button class="btn">Delete</button> --}}
                   </div>
                 </div>
 

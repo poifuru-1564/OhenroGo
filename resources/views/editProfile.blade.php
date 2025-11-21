@@ -30,21 +30,18 @@
                     <sub><small> * This will be visible to other users.</small></sub>
                 </div>
                 <div class="edit-form-elements">
-                    <label for="distance">Total Distance Travelled</label><br>
+                    <label for="distance">Modify Total Distance Traveled</label><br>
                     <input type="number" step="0.01" name="distance" placeholder="current: {{ $user->distance }}">
                 </div>
 
-            @endif
-
-            @if ($user->role->name == 'Locals')
+            @elseif ($user->role->name == 'Locals')
                 <div class="edit-form-elements">
                     <label for="location">Your Area (Prefecture / City) </label><br>
                     <input type="text" name="location" id="location" placeholder="optional" value="{{ $user->location }}"><br>
                     <sub><small> * This will be visible to other users.</small></sub>
                 </div>
-            @endif
-
-            @if ($user->role->name == 'Hotel and Inn Owners')
+                
+            @else 
                 <div class="edit-form-elements">
                     <label for="location">Where do you work? </label><br>
                     <input type="text" name="location" id="location" placeholder="hotel name" value="{{ $user->location }}"> <br>
@@ -53,6 +50,14 @@
             @endif
 
             <button type="submit" class="btn edit-form-elements">Save</button>
+
+            <br><br>
+             @if ($errors->any())
+                @foreach ($errors->all() as $error)
+                    <p class="errorMessage">{{ $error }}</p> 
+                @endforeach      
+            @endif
+
         </form>
     </div>
 </div>

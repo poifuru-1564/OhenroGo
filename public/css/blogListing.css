@@ -167,13 +167,10 @@ select:hover {
 }
 
 .blog-listing-content {
-    display: flex;
     justify-content: center;
-    top: 10vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 2vh;
 }
 
 .blog-body {
@@ -201,10 +198,10 @@ select:hover {
 .blog-text {
     border: solid lightgrey 0.5pt;
     margin-bottom: 20px;
-    padding: 10px;
+    padding: 15px 10px;
     border-radius: 0.5rem;
     font-size: smaller;
-    text-align: right;
+    text-align: left;
 }
 
 .post-category-container {
@@ -222,6 +219,21 @@ select:hover {
     display: inline-block;
     height: fit-content;
     margin: 3px 0px;
+}
+
+.userProfilebtn {
+    font: inherit;
+    background-color: rgba(255, 255, 255, 0);
+    color: #013a20;
+    border: none;
+    border-radius: 0.4rem;
+    padding: 0.4rem 0.8rem;
+}
+
+.userProfilebtn:hover {
+    background-color: rgba(255, 255, 255, 0.781);
+    border: solid lightgrey 0.5pt;
+    cursor: pointer;
 }
 
 /* home  */
@@ -328,7 +340,7 @@ div.profile-outer-container > div {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 170px;
+    margin-bottom: 200px;
 }
 .no-post-body {
     background-color: #faf9f6;
@@ -398,8 +410,7 @@ div.profile-outer-container > div {
 /* Edit Profile */
 
 .edit-container {
-    padding-top: 150px;
-    height: 75vh;
+    padding: 220px;
 }
 
 .edit-form {
