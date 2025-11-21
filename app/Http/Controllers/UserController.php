@@ -36,7 +36,7 @@ class UserController extends Controller
         public function distance(Request $request)
         {
             $validated = $request->validate([
-                'distance' => ['decimal:0,999.99', 'numeric'],
+                'distance' => ['required','decimal:0,999.99', 'numeric'],
             ]);
 
             $newDist = $validated['distance'];
@@ -84,6 +84,7 @@ class UserController extends Controller
             {
                 $input['startDate'] = ['nullable', 'date'];
                 $input['completedDate'] = ['nullable', 'date'];
+                $input['distance'] = ['nullable','between:0,9999.99', 'numeric'];
             }
 
             $validated = $request->validate($input);
@@ -92,11 +93,17 @@ class UserController extends Controller
             $posts->where('user_id', $user->id);
             $posts = $posts->with('prefecture', 'temple', 'status', 'topic')->get();
 
-
-            $user->update($validated);
-    
-            $user->refresh();
-            return view('myProfile', compact('user', 'posts'));
+            $user->fill($validated);
+            $status = $user->save();
+            if($status)
+            {
+                $user->refresh();
+                return view('myProfile', compact('user', 'posts'));
+            }
+            else
+            {
+                back();
+            }
         }
 
 }
