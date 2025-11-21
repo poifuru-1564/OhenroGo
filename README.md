@@ -31,6 +31,8 @@ https://drive.google.com/file/d/1Ii0g0MHEgcG1RKQVOaHIhHK3JjyYO3Uw/view?usp=shari
 https://drive.google.com/file/d/1UqKImyVAX0d4i_Ma1GkB55HYdo1nt3Hl/view?usp=sharing
 
 ## Initial Design (Figma)
+<img width="1831" height="1563" alt="image" src="https://github.com/user-attachments/assets/426447c5-fb4d-49ac-b29a-00079635d547" />
+
 
 https://www.figma.com/design/YPTE7VIw6KqzvjQmYUsQyL/Ohenro-GO-?node-id=131-1689&t=pMLZ63SqllwnajAl-1
 
