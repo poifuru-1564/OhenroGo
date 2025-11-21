@@ -50,7 +50,7 @@ class UserController extends Controller
             }
             else
             {
-                DB::table('users')->where('id', $user_id)->insert(['distance' => $newDist]);
+                DB::table('users')->where('id', $user_id)->update(['distance' => $newDist]);
             }
 
             $user = Auth::user();
@@ -58,6 +58,7 @@ class UserController extends Controller
             $posts = Post::query();
             $posts->where('user_id', $user_id);
             $posts = $posts->with('prefecture', 'temple', 'status', 'topic')->get();
+            $user->save();
             $user->refresh();
 
             return view('myProfile', compact('user','posts'));
