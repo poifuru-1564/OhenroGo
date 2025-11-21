@@ -395,6 +395,7 @@ div.profile-outer-container > div {
     font-size: 0.8em;
     border-radius: 0.4rem;
     padding: 0.2rem 0.4rem;
+    margin-top: 8px;
 }
 
 .profbtn:hover {
@@ -440,4 +441,49 @@ div.profile-outer-container > div {
 .edit-form-elements textarea {
     margin-top: 10px;
     padding: 0.5em;
+}
+
+/* welcome page */
+
+.img-container {
+    background-image: url("../img/welcome.jpeg");
+    position: relative;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    height: 94vh;
+}
+
+.message-overlay {
+    z-index: -1;
+    padding-top: 40vh;
+    position: relative;
+}
+
+.message {
+    background-color: #2b3426a5;
+    padding: 2rem 0;
+    text-align: center;
+    font-size: 1.5rem;
+    color: #d4d6cf;
+    font-weight: bold;
+}
+.welcomebtn {
+    margin-top: 20px;
+    padding: 0.5em;
+    border-radius: 0.5em;
+    background-color: #2b3426c3;
+    color: #d4d6cf;
+    display: inline;
+}
+.welcomebtn:hover {
+    background-color: #d4d6cfbc;
+    cursor: pointer;
+    color: #20281b;
+}
+
+.btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
 }
