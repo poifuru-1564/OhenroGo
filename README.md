@@ -21,10 +21,12 @@ The target audience is foreign pilgrims. The application benefits English-speaki
 ## ER Diagram (draw.io)
 
 ### Initial Version
+<img width="533" height="658" alt="image" src="https://github.com/user-attachments/assets/174f9e44-b49e-4def-96a6-6df9ecc9942f" />
 
 https://drive.google.com/file/d/1Ii0g0MHEgcG1RKQVOaHIhHK3JjyYO3Uw/view?usp=sharing
 
 ### Latest Version
+<img width="836" height="660" alt="image" src="https://github.com/user-attachments/assets/f9e3b502-4acb-4524-8fc0-e16e8bd7354d" />
 
 https://drive.google.com/file/d/1UqKImyVAX0d4i_Ma1GkB55HYdo1nt3Hl/view?usp=sharing
 
