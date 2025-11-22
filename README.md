@@ -21,18 +21,20 @@ The target audience is foreign pilgrims. The application benefits English-speaki
 ## ER Diagram (draw.io)
 
 ### Initial Version
+
 <img width="533" height="658" alt="image" src="https://github.com/user-attachments/assets/174f9e44-b49e-4def-96a6-6df9ecc9942f" />
 
 https://drive.google.com/file/d/1Ii0g0MHEgcG1RKQVOaHIhHK3JjyYO3Uw/view?usp=sharing
 
 ### Latest Version
+
 <img width="836" height="660" alt="image" src="https://github.com/user-attachments/assets/f9e3b502-4acb-4524-8fc0-e16e8bd7354d" />
 
 https://drive.google.com/file/d/1UqKImyVAX0d4i_Ma1GkB55HYdo1nt3Hl/view?usp=sharing
 
 ## Initial Design (Figma)
-<img width="1831" height="1563" alt="image" src="https://github.com/user-attachments/assets/426447c5-fb4d-49ac-b29a-00079635d547" />
 
+<img width="1831" height="1563" alt="image" src="https://github.com/user-attachments/assets/426447c5-fb4d-49ac-b29a-00079635d547" />
 
 https://www.figma.com/design/YPTE7VIw6KqzvjQmYUsQyL/Ohenro-GO-?node-id=131-1689&t=pMLZ63SqllwnajAl-1
 
@@ -46,6 +48,7 @@ https://www.figma.com/design/YPTE7VIw6KqzvjQmYUsQyL/Ohenro-GO-?node-id=131-1689&
 -   **Uploading image fetuare:** Users can upload a image per one post
 -   **Delete blog feature:** Users can delete their blogs
 -   **Categorization feature:** Categorize the blog by "Prefectures", "Location" (temples), "Status", "Topic", and "user role". Users can decide categories of the blog when posting it and search with specific categories.
+-   **Listing blog feature:** Users can list the blogs (Blogs can be filtered with multiple categories)
 -   **Time stamp:** The uploaded time is showed with the post
 
 ### Account Management Functionality
@@ -53,8 +56,10 @@ https://www.figma.com/design/YPTE7VIw6KqzvjQmYUsQyL/Ohenro-GO-?node-id=131-1689&
 **Features:**
 
 -   **Create account feature:** Users can create account
--   **Log-in feature:** Users can log-in their account
--   **Log-out feature:** Users can log-out their account
+-   **Log in feature:** Users can log in their account
+-   **Log out feature:** Users can log out their account
+-   **Reset password feature:** Users can reset their password
+-   **Profile feature:** Users can create and edit the profile
 
 ## Cautions and Areas for Improvement
 
@@ -67,8 +72,9 @@ The CSS is not organized in an object-oriented way. It can be improved by using 
 This would become especially helpful as the number of files increases.
 
 **Database Structure**  
-There are many null records in the database. This may unnecessarily increase the database size.
-To reduce the number of null entries, dividing user records into category-specific tables or creating separate tables for each user role could be a possible improvement.
+There are many columns in the users table that contain null values. This is because many fields are optional for users to fill out, which leads to imcomplete rows. This may unnecessarily increase the database size.
+To address this issue, the table could be normalized.
+For example, creating separate tables for each user role could be a possible improvement.
 
 ## Getting Started
 
@@ -81,7 +87,7 @@ To reduce the number of null entries, dividing user records into category-specif
 5. mysql workbench
 6. Composer
 7. Google Chrome (required for running the local development URL)
-8. Account Required: Github account
+8. Account Required: GitHub account
 
 ### Instruction
 
@@ -141,17 +147,28 @@ Those instructions are for Windows
 
 1. Go to the GitHub OhenroGo! repository: https://github.com/poifuru-1564/OhenroGo
 2. Click **Fork** to copy the project to your Github account
-3. Open a terminal and navigate to the directory where you want to place the project
+3. Open a terminal and navigate to the directory where you want to place the project  
+   You can open this folder in VS Code to view the source files and make edits
 4. Clone your forked repository: **"git clone [URL of your forked repository]"**
 5. In the terminal, move into the project folder
 6. Install this project's Composer dependencies: **"composer install"**
 7. Create your own '.env' file based on the '.env.example' file: **"copy .env.example .env"**
-8. Generate the application key: **"php artisan key:generate"**
-9. Start Laravel Herd
-10. Open Laravel Herd and go to the **Sites** section
-11. Click **Add** and select the folder of the cloned OhenroGo! project
-12. Herd will automatically generate a local development URL (example: http://ohenrogo.test)
-13. Please make sure to open the link in **Google Chrome**
+8. In your .env file, make sure the following settings are configured:  
+   DB_CONNECTION=mysql  
+   DB_HOST=127.0.0.1  
+   DB_PORT=3306  
+   **DB_DATABASE=[your database name]**  
+   **DB_USERNAME=[your MySQL username]**  
+   **DB_PASSWORD=[your MySQL password]**  
+   Please make sure that all fields are filled out correctly
+9. You can use MySQL Workbench to check the database tables through the GUI.
+10. Generate the application key: **"php artisan key:generate"**
+11. After running **"php artisan migrate:fresh --seed"**, you will be prompted to create the database. Enter **"yes"** to continue
+12. Start Laravel Herd
+13. Open Laravel Herd and go to the **Sites** section
+14. Click **Add** and select the folder of the cloned OhenroGo! project
+15. Herd will automatically generate a local development URL (example: http://ohenrogo.test)
+16. Please make sure to open the link in **Google Chrome**
 
 ## Resources:
 
@@ -161,7 +178,7 @@ Those instructions are for Windows
 **Framework:** laravel  
 **Database:** MySQL  
 **Environment:** VS Code, laravel herd, mysql workbench  
-**Version Control:** Git(GitHub)  
+**Version Control:** Git (GitHub)  
 **Tools:** Composer  
 **Additional Resources:** Laravel documentation: https://laravel.com/docs/12.x/installation,
 ChatGPT
