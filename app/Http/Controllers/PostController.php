@@ -97,7 +97,6 @@ class PostController extends Controller
 
     public function store(PostRequest $postRequest)
     {
-        //dd($postRequest->all());
         $validated = $postRequest->validated();
 
         $photoPath = null;
@@ -111,7 +110,7 @@ class PostController extends Controller
             'status_id'     => $validated['status_id'],
             'topic_id'      => $validated['topic_id'],
             'user_id'       => Auth::id(),
-            //'photo_path'    => $photoPath,
+            'photo_path'    => $photoPath,
             'body'          => $validated['body'],
             'title'         => $validated['title'],
         ]);
