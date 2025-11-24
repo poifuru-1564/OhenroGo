@@ -79,6 +79,9 @@ For example, creating separate tables for each user role could be a possible imp
 **image uploading**
 This application only accepts jpg and png images, so that we will be able to put function that allowed the other image files later.
 
+**time zone**
+When this application stores the record for posts, the date info is not JST sometimes. It needs to be updated in future.
+
 ## Getting Started
 
 ### Prerequisites
