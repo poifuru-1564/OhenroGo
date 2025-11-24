@@ -24,14 +24,10 @@ class PostRequest extends FormRequest
         return [
             'title'         => 'required|string|max:255',
             'body'          => 'required|string',
-
-            // ★ ここを追加する
             'prefecture_id' => 'required|exists:prefectures,id',
             'temple_id'     => 'required|exists:temples,id',
             'status_id'     => 'required|exists:status,id',
             'topic_id'      => 'required|exists:topics,id',
-
-            // 画像をバリデーションしたいなら
             'image'         => 'nullable|image|max:2048',
         ];
     }
