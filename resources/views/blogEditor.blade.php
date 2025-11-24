@@ -96,6 +96,8 @@
                             <h2 class="textbox-3-label">Image</h2>
                             <input type="file" id="imageInput" name="image">
                             <img id="preview" style="max-width: 250px; margin-top: 10px;">
+                            <p id="imageErrorJs" style="color:red"></p>
+                            <p class="image__error" style="color:red">{{ $errors->first('image') }}</p>
 
                             {{-- JS 用エラー表示（前者のやり方） --}}
                             <p id="imageErrorJs" style="color:red"></p>
@@ -127,7 +129,6 @@ document.getElementById('imageInput').addEventListener('change', function(event)
         return;
     }
 
-    // サイズチェック（前者JS）
     if (file.size > MAX_IMAGE_SIZE) {
         if (errorEl) {
             errorEl.textContent = 'the image size is too large (maximum 4MB).';
@@ -139,8 +140,6 @@ document.getElementById('imageInput').addEventListener('change', function(event)
         }
         return;
     }
-
-    // プレビュー表示（後者の見た目そのまま＋前者ロジック）
     const reader = new FileReader();
     reader.onload = function(e) {
         const previewEl = document.getElementById('preview');
