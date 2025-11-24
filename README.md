@@ -76,6 +76,9 @@ There are many columns in the users table that contain null values. This is beca
 To address this issue, the table could be normalized.
 For example, creating separate tables for each user role could be a possible improvement.
 
+**image uploading**
+This application only accepts jpg and png images, so that we will be able to put function that allowed the other image files later.
+
 ## Getting Started
 
 ### Prerequisites
@@ -159,16 +162,17 @@ Those instructions are for Windows
    DB_PORT=3306  
    **DB_DATABASE=[your database name]**  
    **DB_USERNAME=[your MySQL username]**  
-   **DB_PASSWORD=[your MySQL password]**  
+   **DB_PASSWORD=[your MySQL password]**
+   **APP_DEBUG=false**
    Please make sure that all fields are filled out correctly
-9. You can use MySQL Workbench to check the database tables through the GUI.
-10. Generate the application key: **"php artisan key:generate"**
-11. After running **"php artisan migrate:fresh --seed"**, you will be prompted to create the database. Enter **"yes"** to continue
-12. Start Laravel Herd
-13. Open Laravel Herd and go to the **Sites** section
-14. Click **Add** and select the folder of the cloned OhenroGo! project
-15. Herd will automatically generate a local development URL (example: http://ohenrogo.test)
-16. Please make sure to open the link in **Google Chrome**
+10. You can use MySQL Workbench to check the database tables through the GUI.
+11. Generate the application key: **"php artisan key:generate"**
+12. After running **"php artisan migrate:fresh --seed"**, you will be prompted to create the database. Enter **"yes"** to continue
+13. Start Laravel Herd
+14. Open Laravel Herd and go to the **Sites** section
+15. Click **Add** and select the folder of the cloned OhenroGo! project
+16. Herd will automatically generate a local development URL (example: http://ohenrogo.test)
+17. Please make sure to open the link in **Google Chrome**
 
 ## Resources:
 
