@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-
+<
 <div class="content">
     <div class="filter-container">
         <!-- Categories-->
@@ -47,7 +47,9 @@
                         </div>
                         <div class="image">
                             <h2>Image</h2>
-                            <input type="file" name="image">
+                            <input type="file" id="imageInput" name="image">
+                            <img id="preview" style="max-width: 250px; margin-top: 10px;">
+
                         </div>
                         <div class="blog-text">
                             <h2>Body</h2>
@@ -61,4 +63,17 @@
         </div>
     </div>
 </div>
+
+<script>
+document.getElementById('imageInput').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('preview').src = e.target.result;
+        };
+        reader.readAsDataURL(file);
+    }
+});
+</script>
 @endsection

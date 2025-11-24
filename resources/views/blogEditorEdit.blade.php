@@ -77,12 +77,12 @@
 
                             {{-- 画像がある場合は表示 --}}
                             @if ($post->photo_path)
-                                <img src="{{ asset('storage/img/posts/' . $post->photo_path) }}"
-                                     style="max-width: 250px; margin-bottom: 10px;">
+                                <img id="oldImage" class="card-img-top" src="{{ asset($post->photo_path) }}"alt="Image"/>
                             @endif
 
                             {{-- 新しい画像をアップロードしたい場合 --}}
-                            <input type="file" name="image">
+                            <input type="file" id="imageInput" name="image">
+                            <img id="preview" style="max-width: 250px; margin-top: 10px;">
                         </div>
 
                         {{-- Body --}}
@@ -99,5 +99,19 @@
         </div>
     </div>
 </div>
-
+<script>
+document.getElementById('imageInput').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    const preview = document.getElementById('preview');
+    const oldImage = document.getElementById('oldImage');
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('preview').src = e.target.result;
+            if (oldImage) oldImage.style.display = 'none';
+        };
+        reader.readAsDataURL(file);
+    }
+});
+</script>
 @endsection
