@@ -2,7 +2,7 @@
 @section('content')
 
 {{-- profile section --}}
-<div class="profile-outer-container">
+<div class="myProfile-outer-container">
   <div class="user-profile">
     <div class="prof-container">
 
