@@ -41,20 +41,20 @@
                     
                     <div class="blog-body">
                         <div class="blog-title">
-                            <h2>Title</h2>
-                            <input type="text" name="title" placeholder="title(dd/mm/yyyy)" value="{{ old('title') }}">
+                            <h2 class="textbox-3-label">Title</h2>
+                            <input type="text" class="textbox-title-3"name="title" placeholder="title(dd/mm/yyyy)" value="{{ old('title') }}">
                             <p class="title__error" style="color:red">{{ $errors->first('title') }}</p>
                         </div>
-                        <div class="image">
-                            <h2>Image</h2>
+                        <div class="blog-text">
+                            <h2 class="textbox-3-label">Body</h2>
+                            <textarea name="body" class="textbox-3" placeholder="please write your blog here">{{ old('body') }}</textarea>
+                            <p class="body__error" style="color:red">{{ $errors->first('body') }}</p>
+                        </div>
+                            <div class="image">
+                            <h2 class="textbox-3-label">Image</h2>
                             <input type="file" id="imageInput" name="image">
                             <img id="preview" style="max-width: 250px; margin-top: 10px;">
 
-                        </div>
-                        <div class="blog-text">
-                            <h2>Body</h2>
-                            <textarea name="body" placeholder="please write your blog here">{{ old('body') }}</textarea>
-                            <p class="body__error" style="color:red">{{ $errors->first('body') }}</p>
                         </div>
                     </div>
                     <input type="submit" value="store"/>
