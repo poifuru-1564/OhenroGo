@@ -21,7 +21,7 @@
                             </option>
                         @endforeach
                     </select>
-
+                    <p style="color:red">{{ $errors->first('prefecture_id') }}</p>
                     {{-- Temple --}}
                     <select name="temple_id" class="filter-select">
                         <option value="">---2. Select Temple---</option>
@@ -32,6 +32,7 @@
                             </option>
                         @endforeach
                     </select>
+                    <p style="color:red">{{ $errors->first('temple_id') }}</p>
 
                     {{-- Status --}}
                     <select name="status_id" class="filter-select">
@@ -43,7 +44,7 @@
                             </option>
                         @endforeach
                     </select>
-
+                    <p style="color:red">{{ $errors->first('status_id') }}</p>
                     {{-- Topic --}}
                     <select name="topic_id" class="filter-select">
                         <option value="">---4. Select Topic---</option>
@@ -54,7 +55,7 @@
                             </option>
                         @endforeach
                     </select>
-                    
+                    <p style="color:red">{{ $errors->first('topic_id') }}</p>
                     <select class="filter-select" disabled>
                         <option value="">current status: {{ auth()->user()->role->name }}</option>
                     </select>
@@ -88,6 +89,8 @@
                             {{-- 新しい画像をアップロードしたい場合 --}}
                             <input type="file" id="imageInput" name="image">
                             <img id="preview" style="max-width: 250px; margin-top: 10px;">
+                            <p id="imageErrorJs" style="color:red"></p>
+                            <p class="image__error" style="color:red">{{ $errors->first('image') }}
                         </div>
 
 
@@ -100,18 +103,36 @@
     </div>
 </div>
 <script>
+const MAX_IMAGE_SIZE = 4 * 1024 * 1024; // 4MB
+
 document.getElementById('imageInput').addEventListener('change', function(event) {
-    const file = event.target.files[0];
-    const preview = document.getElementById('preview');
-    const oldImage = document.getElementById('oldImage');
-    if (file) {
-        const reader = new FileReader();
-        reader.onload = function(e) {
-            document.getElementById('preview').src = e.target.result;
-            if (oldImage) oldImage.style.display = 'none';
-        };
-        reader.readAsDataURL(file);
+    const errorEl = document.getElementById('imageErrorJs');
+    if (errorEl) {
+        errorEl.textContent = '';
     }
+
+    const file = event.target.files[0];
+    if (!file) {
+        return;
+    }
+
+    if (file.size > MAX_IMAGE_SIZE) {
+        if (errorEl) {
+            errorEl.textContent = 'the image size is too large (maximum 4MB).';
+        }
+        event.target.value = '';
+        const previewEl = document.getElementById('preview');
+        if (previewEl) {
+            previewEl.src = '';
+        }
+        return;
+    }
+
+    const reader = new FileReader();
+    reader.onload = function(e) {
+        document.getElementById('preview').src = e.target.result;
+    };
+    reader.readAsDataURL(file);
 });
 </script>
 @endsection
