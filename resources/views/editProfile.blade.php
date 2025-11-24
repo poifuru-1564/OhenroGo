@@ -3,7 +3,7 @@
 
 
 <div class="content">
-    <div class="edit-container">
+        <div class="@if($user->role->name != 'Pilgrims') not-pilgrim @endif edit-container" >
         <form method="POST" action="{{ route('edit') }}" class="edit-form">
             @csrf
             <h3 class="edit-form-header">Edit Profile</h3>
