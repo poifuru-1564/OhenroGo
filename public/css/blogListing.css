@@ -426,6 +426,10 @@ div.myProfile-outer-container > div {
     padding: 150px;
 }
 
+.not-pilgrim {
+    padding: 220px;
+}
+
 .edit-form {
     padding: 20px;
     background-color: #fff1cf;
