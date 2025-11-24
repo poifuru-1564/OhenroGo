@@ -102,7 +102,7 @@ class PostController extends Controller
         $photoPath = null;
         if ($postRequest->hasFile('image')) {
             $photoPath = $postRequest->file('image')
-                ->store('', 'post_images'); // ← 空文字 '' でルート直下に保存
+                ->store('img/for_seed', 'post_images'); // ← 空文字 '' でルート直下に保存
         }
 
         Post::create([
