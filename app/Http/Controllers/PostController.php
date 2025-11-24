@@ -113,7 +113,6 @@ class PostController extends Controller
             'user_id'       => auth()->id(),
             'photo_path'    => $photoPath,
             'user_id'       => Auth::id(),
-            'photo_path'    => $photoPath,
             'body'          => $validated['body'],
             'title'         => $validated['title'],
         ]);
