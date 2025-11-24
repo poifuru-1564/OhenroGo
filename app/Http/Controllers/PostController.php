@@ -102,7 +102,8 @@ class PostController extends Controller
 
         $photoPath = null;
         if ($postRequest->hasFile('image')) {
-            $photoPath = $postRequest->file('image')->store('posts', 'public');
+            $photoPath = $postRequest->file('image')
+                ->store('', 'post_images'); // ← 空文字 '' でルート直下に保存
         }
 
         Post::create([
@@ -111,7 +112,7 @@ class PostController extends Controller
             'status_id'     => $validated['status_id'],
             'topic_id'      => $validated['topic_id'],
             'user_id'       => auth()->id(),
-            //'photo_path'    => $photoPath,
+            'photo_path'    => $photoPath,
             'body'          => $validated['body'],
             'title'         => $validated['title'],
         ]);
