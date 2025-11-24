@@ -90,7 +90,7 @@
                 <div class="blog-card-header">
                   <div style="margin-left: 2.5rem">{{ $post->created_at }}</div>
                   <div style="margin-right: 1.5rem">
-                    <button class="btn">Edit</button>
+                    <a href="{{ route('posts.edit', $post) }}" class="btn">Edit</a>
                     {{-- <button class="btn">Delete</button> --}}
                   </div>
                 </div>
