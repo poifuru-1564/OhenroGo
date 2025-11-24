@@ -64,16 +64,21 @@
 
                         {{-- Title --}}
                         <div class="blog-title">
-                            <h2>Title</h2>
-                            <input type="text"
+                            <h2 class="textbox-3-label">Title</h2>
+                            <input type="text" class="textbox-title-3"
                                    name="title"
                                    value="{{ old('title', $post->title) }}">
                             <p class="title__error" style="color:red">{{ $errors->first('title') }}</p>
                         </div>
-
+                        {{-- Body --}}
+                        <div class="blog-text">
+                            <h2 class="textbox-3-label">Body</h2>
+                            <textarea name="body" class="textbox-3">{{ old('body', $post->body) }}</textarea>
+                            <p class="body__error" style="color:red">{{ $errors->first('body') }}</p>
+                        </div>
                         {{-- Image --}}
                         <div class="image">
-                            <h2>Image</h2>
+                            <h2 class="textbox-3-label">Image</h2>
 
                             {{-- 画像がある場合は表示 --}}
                             @if ($post->photo_path)
@@ -85,12 +90,7 @@
                             <img id="preview" style="max-width: 250px; margin-top: 10px;">
                         </div>
 
-                        {{-- Body --}}
-                        <div class="blog-text">
-                            <h2>Body</h2>
-                            <textarea name="body">{{ old('body', $post->body) }}</textarea>
-                            <p class="body__error" style="color:red">{{ $errors->first('body') }}</p>
-                        </div>
+
                     </div>
 
                     <input type="submit" value="Update"/>
