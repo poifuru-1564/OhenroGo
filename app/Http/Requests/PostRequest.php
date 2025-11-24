@@ -28,7 +28,7 @@ class PostRequest extends FormRequest
             'temple_id'     => 'required|exists:temples,id',
             'status_id'     => 'required|exists:status,id',
             'topic_id'      => 'required|exists:topics,id',
-            'image'         => 'nullable|image|max:2048',
+            'image'         => 'nullable|image',
         ];
     }
 }
