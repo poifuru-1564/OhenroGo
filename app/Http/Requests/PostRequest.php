@@ -28,7 +28,19 @@ class PostRequest extends FormRequest
             'temple_id'     => 'required|exists:temples,id',
             'status_id'     => 'required|exists:status,id',
             'topic_id'      => 'required|exists:topics,id',
-            'image'         => 'nullable|image',
+            'image'         => 'nullable|image|mimes:jpg,jpeg,png|max:4096',
+        ];
+    }
+    public function messages()
+    {
+        return [
+            'prefecture_id.required' => 'please select a prefecture.',
+            'temple_id.required'     => 'please select a temple.',
+            'status_id.required'     => 'please select a status.',
+            'topic_id.required'      => 'please select a topic.',
+            'image.required' => 'please select an image.',
+            'image.image'    => 'please select an image file.',
+            'image.max'      => 'the image size is too large (maximum 4MB).',
         ];
     }
 }
