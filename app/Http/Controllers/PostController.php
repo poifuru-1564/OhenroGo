@@ -120,5 +120,45 @@ class PostController extends Controller
 
         return redirect()->route('home')->with('message', 'Blog post created successfully!');
     }
+
+    public function edit(Post $post)
+    {
+        if ($post->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        $prefectures = Prefecture::all();
+        $temples = Temple::all();
+        $status = Status::all();
+        $topics = Topic::all();
+
+        return view('blogEditorEdit', compact('post', 'prefectures', 'temples', 'status', 'topics'));
+    }
+
+    public function update(PostRequest $request, Post $post)
+    {
+        if ($post->user_id !== auth()->id()) {
+            abort(403);
+        }
+
+        $validated = $request->validated();
+        if ($request->hasFile('image')) {
+            $photoPath = $request->file('image')->store('img/for_seed', 'post_images');
+            $post->photo_path = $photoPath;
+        }
+
+        $post->fill([
+            'prefecture_id' => $validated['prefecture_id'],
+            'temple_id'     => $validated['temple_id'],
+            'status_id'     => $validated['status_id'],
+            'topic_id'      => $validated['topic_id'],
+            'title'         => $validated['title'],
+            'body'          => $validated['body'],
+        ])->save();
+
+        return redirect()
+            ->route('myProfile')
+            ->with('message', 'Post updated successfully!');
+    }
     
 }
