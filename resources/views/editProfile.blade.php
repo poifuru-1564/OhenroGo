@@ -31,7 +31,7 @@
                 </div>
                 <div class="edit-form-elements">
                     <label for="distance">Modify Total Distance Traveled</label><br>
-                    <input type="number" step="0.01" name="distance" placeholder="current: {{ $user->distance }}">
+                    <input type="number" step="0.01" name="distance" placeholder="current: {{ $user->distance }}" value="{{ $user->distance }}">
                 </div>
 
             @elseif ($user->role->name == 'Locals')

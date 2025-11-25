@@ -50,7 +50,7 @@ class UserController extends Controller
             }
             else
             {
-                DB::table('users')->where('id', $user_id)->insert(['distance' => $newDist]);
+                DB::table('users')->where('id', $user_id)->update(['distance' => $newDist]);
             }
 
             $user = Auth::user();
